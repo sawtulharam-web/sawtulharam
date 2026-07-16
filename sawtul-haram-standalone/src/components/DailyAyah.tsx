@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
@@ -22,8 +22,46 @@ function getTodayAyah() {
   ];
 }
 
+const CACHE_KEY = "daily-ayah-cache";
+
+
+function getCachedAyah() {
+  const cached = localStorage.getItem(CACHE_KEY);
+
+  if (!cached) return null;
+
+  try {
+    const parsed = JSON.parse(cached);
+
+    if (parsed.date === new Date().toDateString()) {
+      return parsed.data;
+    }
+
+    return null;
+
+  } catch {
+    return null;
+  }
+}
+
+
+function saveCachedAyah(data: any) {
+  localStorage.setItem(
+    CACHE_KEY,
+    JSON.stringify({
+      date: new Date().toDateString(),
+      data,
+    })
+  );
+}
 
 async function fetchDailyAyah() {
+
+  const cached = getCachedAyah();
+
+if (cached) {
+  return cached;
+}
 
   const reference = getTodayAyah();
 
@@ -56,22 +94,25 @@ async function fetchDailyAyah() {
     await chapterResponse.json();
 
 
-  return {
-    arabic: verse.text_uthmani,
-    translation,
-    verseNumber: reference.ayah,
-    chapterArabic:
-      chapterData.chapter.name_arabic,
-    chapterEnglish:
-      chapterData.chapter.name_simple,
-    chapterId:
-      reference.surah
-  };
+  const result = {
+  arabic: verse.text_uthmani,
+  translation,
+  verseNumber: reference.ayah,
+  chapterArabic: chapterData.chapter.name_arabic,
+  chapterEnglish: chapterData.chapter.name_simple,
+  chapterId: reference.surah
+};
+
+
+saveCachedAyah(result);
+
+
+return result;
 }
 
 export default function DailyAyah() {
   const { t, lang } = useLanguage();
-  const [fetchKey] = useState(0);
+  const [fetchKey, setFetchKey] = useState(0);
 
   const { data, isFetching, isError } = useQuery({
     queryKey: ['daily-ayah', fetchKey],
@@ -80,6 +121,29 @@ export default function DailyAyah() {
     retry: 2,
     staleTime: Infinity,
   });
+
+  useEffect(() => {
+
+  const now = new Date();
+
+  const midnight = new Date();
+
+  midnight.setHours(24, 0, 0, 0);
+
+  const timeUntilMidnight =
+    midnight.getTime() - now.getTime();
+
+
+  const timer = setTimeout(() => {
+    localStorage.removeItem("daily-ayah-cache");
+    setFetchKey((key) => key + 1);
+
+  }, timeUntilMidnight);
+
+
+  return () => clearTimeout(timer);
+
+}, []);
 
   return (
     <section id="ayah" className="py-24 bg-[#2D2016] text-[#F9F5ED] relative border-y border-primary/20 overflow-hidden">
@@ -102,7 +166,7 @@ export default function DailyAyah() {
             <div className="w-1/3 h-[1px] bg-gradient-to-l from-transparent to-primary/50" />
           </div>
 
-          {isFetching ? (
+          {isFetching && !data ? (
             <div className="py-20 flex flex-col items-center justify-center opacity-50">
               <RefreshCw className="w-8 h-8 animate-spin text-primary mb-4" />
               <p className="font-arabic text-xl text-primary/80">جاري التحميل...</p>
