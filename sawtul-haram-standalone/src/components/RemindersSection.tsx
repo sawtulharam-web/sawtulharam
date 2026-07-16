@@ -3,7 +3,6 @@ import { useLanguage } from './LanguageContext';
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import IslamicPattern from './IslamicPattern';
 import { REMINDER_POSTS } from '../data/reminders';
-import logo from '@assets/Logo_transparent.png';
 
 export default function RemindersSection() {
   const { t, lang } = useLanguage();
@@ -35,73 +34,33 @@ export default function RemindersSection() {
         </motion.div>
 
         {/* Reminder post cards — styled after the channel's Instagram highlight posts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-14">
-          {REMINDER_POSTS.map((post, index) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.12 }}
-              className="flex flex-col bg-[#FBF8F2] rounded-[1.5rem_0_1.5rem_0] overflow-hidden border border-primary/15 shadow-sm hover:shadow-[0_8px_28px_rgba(201,168,76,0.15)] transition-shadow"
-            >
-              {/* Gold ornamental top border */}
-              <div
-                className="h-3 w-full shrink-0"
-                style={{
-                  background:
-                    'repeating-linear-gradient(135deg, #C9A84C 0 6px, #ddc27a 6px 12px)',
-                }}
-              />
+        {/* Reminder post images */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-14">
 
-              <div className="flex flex-col items-center text-center px-6 pt-6 pb-5 flex-1">
-                {/* Channel mark */}
-                <div className="flex items-center gap-2 self-start mb-6">
-                  <img src={logo} alt="" className="w-8 h-8" draggable={false} />
-                  <div className="text-left rtl:text-right">
-                    <p className="font-arabic text-[11px] font-bold text-foreground leading-none">صَوْتُ الحَرَمِ</p>
-                    <p className="font-arabic text-[9px] text-muted-foreground mt-0.5 leading-none">تلاوات أئمّة الحرمَين الشَّريفَين</p>
-                  </div>
-                </div>
+  {REMINDER_POSTS.map((post, index) => (
+    <motion.div
+      key={post.id}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.12,
+      }}
+      className="overflow-hidden rounded-2xl border border-primary/15 shadow-sm hover:shadow-[0_8px_28px_rgba(201,168,76,0.15)] transition-shadow bg-card"
+    >
 
-                {/* Calligraphic heading */}
-                <p className="font-arabic text-3xl text-primary mb-6" style={{ fontFamily: "'Amiri', serif" }}>
-                  {post.titleAr}
-                </p>
+      <img
+        src={post.image}
+        alt="Reminder"
+        className="w-full h-auto object-cover"
+        draggable={false}
+      />
 
-                {/* Arabic hadith text */}
-                <p dir="rtl" className="font-arabic text-lg leading-[1.9] text-foreground mb-6">
-                  {post.arabicText}
-                </p>
+    </motion.div>
+  ))}
 
-                {/* English translation */}
-                <p dir="ltr" className="font-serif italic text-sm text-foreground/70 leading-relaxed mb-5">
-                  "{post.englishText}"
-                </p>
-
-                {/* Source */}
-                <p className="font-sans text-[11px] text-muted-foreground mb-6">[{post.source}]</p>
-
-                {/* Instagram handle */}
-                <div className="flex items-center gap-1.5 border-t border-primary/15 pt-4 w-full justify-center">
-                  <FaInstagram className="w-3.5 h-3.5 text-primary/70" />
-                  <span className="font-sans text-xs text-foreground/70">sawtul_haram</span>
-                </div>
-              </div>
-
-              {/* Photo footer strip */}
-              <div className="h-20 w-full shrink-0 overflow-hidden">
-                <img
-                  src={post.footerImage}
-                  alt=""
-                  className="w-full h-full object-cover grayscale-[15%]"
-                  draggable={false}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
+</div>
         {/* Note about updating */}
         <p className="text-center text-muted-foreground text-xs mb-10 -mt-4 font-sans">
           {t(
