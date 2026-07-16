@@ -130,6 +130,7 @@ export default function DailyAyah() {
 
   midnight.setHours(24, 0, 0, 0);
 
+
   const timeUntilMidnight =
     midnight.getTime() - now.getTime();
 
@@ -209,16 +210,23 @@ export default function DailyAyah() {
                 <div className="h-[1px] w-8 bg-primary/30" />
               </div>
 
-              {/* English translation */}
-              <p
-                className="text-lg md:text-xl font-serif italic text-white/80 leading-relaxed text-center mb-8"
-                dir="ltr"
-              >
-                "{data.translation}"
-              </p>
+              {/* English translation - always displayed */}
+              <div className="mt-8 mb-8">
+
+                <p className="text-primary/80 text-sm mb-3 font-sans">
+                  English Translation
+                </p>
+
+                <p
+                  className="text-lg md:text-xl font-serif italic text-white/80 leading-relaxed text-center"
+                  dir="ltr"
+                >
+                  "{data.translation}"
+                </p>
+
+              </div>
 
               {/* Reference */}
-                            {/* Reference */}
               <div className="flex flex-col items-center gap-5">
 
                 <div className="inline-block border border-primary/30 rounded-full px-6 py-2 bg-black/20 backdrop-blur-sm">
