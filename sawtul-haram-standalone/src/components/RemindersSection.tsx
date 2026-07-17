@@ -53,24 +53,79 @@ export default function RemindersSection() {
 
         {/* Reminder post cards — styled after the channel's Instagram highlight posts */}
         {/* Reminder post images */}
-{/* Reminder carousel */}
-<div className="relative max-w-3xl mx-auto mb-14">
+{/* Reminder stacked card deck */}
 
+<div className="relative max-w-xl mx-auto mb-14 flex justify-center">
+
+  {/* Back cards */}
+  {[2, 1].map((offset) => {
+    const index =
+      (currentReminder + offset) % REMINDER_POSTS.length;
+
+    return (
+      <motion.div
+        key={`back-${REMINDER_POSTS[index].id}`}
+        className="absolute w-[min(85vw,520px)] aspect-square rounded-2xl border border-primary/10 bg-card shadow-[0_8px_35px_rgba(201,168,76,0.12)]"
+        style={{
+          transform: `translateY(${offset * 12}px) scale(${1 - offset * 0.03})`,
+          zIndex: 1,
+        }}
+        animate={{
+          opacity: 0.45 - offset * 0.1,
+        }}
+      >
+        <img
+          src={REMINDER_POSTS[index].image}
+          alt=""
+          className="w-full h-full object-contain rounded-2xl"
+          draggable={false}
+        />
+      </motion.div>
+    );
+  })}
+
+
+  {/* Main card */}
   <AnimatePresence mode="wait">
 
     <motion.div
       key={REMINDER_POSTS[currentReminder].id}
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -40 }}
-      transition={{ duration: 0.4 }}
-      className="overflow-hidden rounded-2xl border border-primary/15 shadow-sm bg-card"
+      initial={{
+        opacity: 0,
+        scale: 0.96,
+        x: 40,
+      }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        x: 0,
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0.96,
+        x: -40,
+      }}
+      transition={{
+        duration: 0.45,
+      }}
+      className="
+        relative
+        z-10
+        w-[min(85vw,520px)]
+        aspect-square
+        rounded-2xl
+        overflow-hidden
+        border
+        border-primary/20
+        bg-card
+        shadow-[0_15px_45px_rgba(201,168,76,0.18)]
+      "
     >
 
       <img
         src={REMINDER_POSTS[currentReminder].image}
         alt="Reminder"
-        className="w-full h-auto object-cover"
+        className="w-full h-full object-contain"
         draggable={false}
       />
 
@@ -82,14 +137,25 @@ export default function RemindersSection() {
   {/* Left arrow */}
   <button
     onClick={previousReminder}
-    className="absolute left-3 top-1/2 -translate-y-1/2 
-    w-10 h-10 rounded-full 
-    bg-background/80 backdrop-blur-sm
-    border border-primary/30
-    text-primary
-    hover:bg-primary hover:text-white
-    transition-all"
-    aria-label="Previous reminder"
+    className="
+      absolute
+      left-0
+      top-1/2
+      -translate-y-1/2
+      -translate-x-4
+      z-20
+      w-10
+      h-10
+      rounded-full
+      bg-background/90
+      backdrop-blur-sm
+      border
+      border-primary/30
+      text-primary
+      hover:bg-primary
+      hover:text-white
+      transition-all
+    "
   >
     <ChevronLeft className="w-5 h-5 mx-auto" />
   </button>
@@ -98,37 +164,52 @@ export default function RemindersSection() {
   {/* Right arrow */}
   <button
     onClick={nextReminder}
-    className="absolute right-3 top-1/2 -translate-y-1/2 
-    w-10 h-10 rounded-full 
-    bg-background/80 backdrop-blur-sm
-    border border-primary/30
-    text-primary
-    hover:bg-primary hover:text-white
-    transition-all"
-    aria-label="Next reminder"
+    className="
+      absolute
+      right-0
+      top-1/2
+      -translate-y-1/2
+      translate-x-4
+      z-20
+      w-10
+      h-10
+      rounded-full
+      bg-background/90
+      backdrop-blur-sm
+      border
+      border-primary/30
+      text-primary
+      hover:bg-primary
+      hover:text-white
+      transition-all
+    "
   >
     <ChevronRight className="w-5 h-5 mx-auto" />
   </button>
 
 
   {/* Dots */}
-  <div className="flex justify-center gap-2 mt-6">
+  <div className="absolute -bottom-10 left-0 right-0 flex justify-center gap-2">
 
     {REMINDER_POSTS.map((post, index) => (
       <button
         key={post.id}
         onClick={() => setCurrentReminder(index)}
-        className={`w-2 h-2 rounded-full transition-all ${
-          index === currentReminder
-          ? "bg-primary w-6"
-          : "bg-primary/30"
-        }`}
+        className={`
+          h-2
+          rounded-full
+          transition-all
+          ${
+            index === currentReminder
+              ? "bg-primary w-6"
+              : "bg-primary/30 w-2"
+          }
+        `}
         aria-label={`Go to reminder ${index + 1}`}
       />
     ))}
 
   </div>
-
 
 </div>
         {/* Note about updating */}
