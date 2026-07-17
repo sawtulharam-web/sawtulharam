@@ -215,7 +215,7 @@ export default function RemindersSection() {
           transition={{ duration: 0.7 }}
           className="flex flex-col sm:flex-row gap-5 max-w-xl mx-auto"
         >
-          
+          <a
             href="https://www.youtube.com/@%D8%B5%D9%88%D8%AA_%D8%A7%D9%84%D8%AD%D8%B1%D9%85"
             target="_blank"
             rel="noopener noreferrer"
@@ -231,7 +231,7 @@ export default function RemindersSection() {
             </div>
           </a>
 
-          
+          <a
             href="https://www.instagram.com/sawtul_haram/"
             target="_blank"
             rel="noopener noreferrer"
