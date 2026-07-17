@@ -57,11 +57,11 @@ function saveCachedAyah(data: any) {
 
 async function fetchDailyAyah() {
 
-  const cached = getCachedAyah();
+ // const cached = getCachedAyah();
 
-if (cached) {
-  return cached;
-}
+  // if (cached) {
+    // return cached;
+  // }
 
   const reference = getTodayAyah();
 
@@ -77,7 +77,7 @@ if (cached) {
   const data = await response.json();
 
   const verse = data.verse;
-  alert(JSON.stringify(data, null, 2));
+  alert(JSON.stringify(data, null, 2));  // temporarily added
 
   console.log("FULL RESPONSE:", data);
   console.log("VERSE:", verse);
