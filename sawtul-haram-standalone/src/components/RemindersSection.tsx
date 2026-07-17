@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 import { useLanguage } from './LanguageContext';
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import IslamicPattern from './IslamicPattern';
@@ -7,6 +9,22 @@ import { REMINDER_POSTS } from '../data/reminders';
 export default function RemindersSection() {
   const { t, lang } = useLanguage();
 
+  const [currentReminder, setCurrentReminder] = useState(0);
+
+  const nextReminder = () => {
+    setCurrentReminder(
+      (currentReminder + 1) % REMINDER_POSTS.length
+    );
+  };
+
+
+  const previousReminder = () => {
+    setCurrentReminder(
+      (currentReminder - 1 + REMINDER_POSTS.length) %
+      REMINDER_POSTS.length
+    );
+  };
+  
   return (
     <section id="reminders" className="py-24 bg-background relative overflow-hidden">
       <IslamicPattern opacity={0.04} className="text-primary" />
@@ -35,30 +53,82 @@ export default function RemindersSection() {
 
         {/* Reminder post cards — styled after the channel's Instagram highlight posts */}
         {/* Reminder post images */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-14">
+{/* Reminder carousel */}
+<div className="relative max-w-3xl mx-auto mb-14">
 
-  {REMINDER_POSTS.map((post, index) => (
+  <AnimatePresence mode="wait">
+
     <motion.div
-      key={post.id}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.12,
-      }}
-      className="overflow-hidden rounded-2xl border border-primary/15 shadow-sm hover:shadow-[0_8px_28px_rgba(201,168,76,0.15)] transition-shadow bg-card"
+      key={REMINDER_POSTS[currentReminder].id}
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -40 }}
+      transition={{ duration: 0.4 }}
+      className="overflow-hidden rounded-2xl border border-primary/15 shadow-sm bg-card"
     >
 
       <img
-        src={post.image}
+        src={REMINDER_POSTS[currentReminder].image}
         alt="Reminder"
         className="w-full h-auto object-cover"
         draggable={false}
       />
 
     </motion.div>
-  ))}
+
+  </AnimatePresence>
+
+
+  {/* Left arrow */}
+  <button
+    onClick={previousReminder}
+    className="absolute left-3 top-1/2 -translate-y-1/2 
+    w-10 h-10 rounded-full 
+    bg-background/80 backdrop-blur-sm
+    border border-primary/30
+    text-primary
+    hover:bg-primary hover:text-white
+    transition-all"
+    aria-label="Previous reminder"
+  >
+    <ChevronLeft className="w-5 h-5 mx-auto" />
+  </button>
+
+
+  {/* Right arrow */}
+  <button
+    onClick={nextReminder}
+    className="absolute right-3 top-1/2 -translate-y-1/2 
+    w-10 h-10 rounded-full 
+    bg-background/80 backdrop-blur-sm
+    border border-primary/30
+    text-primary
+    hover:bg-primary hover:text-white
+    transition-all"
+    aria-label="Next reminder"
+  >
+    <ChevronRight className="w-5 h-5 mx-auto" />
+  </button>
+
+
+  {/* Dots */}
+  <div className="flex justify-center gap-2 mt-6">
+
+    {REMINDER_POSTS.map((post, index) => (
+      <button
+        key={post.id}
+        onClick={() => setCurrentReminder(index)}
+        className={`w-2 h-2 rounded-full transition-all ${
+          index === currentReminder
+          ? "bg-primary w-6"
+          : "bg-primary/30"
+        }`}
+        aria-label={`Go to reminder ${index + 1}`}
+      />
+    ))}
+
+  </div>
+
 
 </div>
         {/* Note about updating */}
