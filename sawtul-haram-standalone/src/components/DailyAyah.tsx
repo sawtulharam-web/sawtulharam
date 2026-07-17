@@ -78,6 +78,9 @@ async function fetchDailyAyah() {
 
   const verse = data.verse;
 
+  console.log("VERSE:", verse);
+  console.log("TRANSLATIONS:", verse.translations);
+
   const translation =
     data.translations?.[0]?.text  // fixing translation
       ?.replace(/<[^>]*>/g, '')
