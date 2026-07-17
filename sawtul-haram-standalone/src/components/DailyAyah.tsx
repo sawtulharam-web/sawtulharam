@@ -22,7 +22,7 @@ function getTodayAyah() {
   ];
 }
 
-const CACHE_KEY = "daily-ayah-cache";
+const CACHE_KEY = "daily-ayah-cache-v2";
 
 
 function getCachedAyah() {
@@ -66,7 +66,7 @@ async function fetchDailyAyah() {
   const reference = getTodayAyah();
 
   const response = await fetch(
-    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?fields=text_uthmani&translations=131`
+     `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?fields=text_uthmani&translations=131`
   );
 
 
@@ -77,6 +77,9 @@ async function fetchDailyAyah() {
   const data = await response.json();
 
   const verse = data.verse;
+
+  console.log("AFTER API CHANGE:", verse);
+  console.log("TRANSLATIONS NOW:", verse.translations);
 
   console.log("VERSE:", verse);
   console.log("TRANSLATIONS:", verse.translations);
