@@ -91,12 +91,7 @@ async function fetchDailyAyah() {
   const translation =
     translationData.verse.translations?.[0]?.text
       ?.replace(/<[^>]*>/g, '')
-      .trim();
-
-  console.log("TRANSLATION RESULT:", translation);
-
-  console.log("VERSE:", verse);
-  console.log("TRANSLATIONS:", verse.translations);
+      .trim() || "Translation unavailable";
 
 
   const chapterResponse = await fetch(
@@ -150,7 +145,7 @@ export default function DailyAyah() {
 
 
   const timer = setTimeout(() => {
-    localStorage.removeItem("daily-ayah-cache");
+    localStorage.removeItem(CACHE_KEY);
     setFetchKey((key) => key + 1);
 
   }, timeUntilMidnight);
