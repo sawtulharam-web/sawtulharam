@@ -204,7 +204,7 @@ export default function DailyAyah() {
 
               {/* Arabic text — Uthmani script from Quran.com */}
               <p
-                className="text-3xl md:text-4xl lg:text-5xl leading-[1.9] font-arabic mb-8 text-center"
+                className="text-2xl md:text-3xl lg:text-4xl leading-[1.9] font-arabic mb-8 text-center"
                 dir="rtl"
                 style={{ fontFamily: "'Amiri', serif" }}
               >
