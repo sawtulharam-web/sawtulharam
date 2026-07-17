@@ -9,21 +9,46 @@ import { REMINDER_POSTS } from '../data/reminders';
 export default function RemindersSection() {
   const { t, lang } = useLanguage();
 
-  const [currentReminder, setCurrentReminder] = useState(0);
+  // [index, direction] — direction: 1 = moving forward, -1 = moving backward
+  const [[currentReminder, direction], setReminderState] = useState<[number, number]>([0, 0]);
 
-  const nextReminder = () => {
-    setCurrentReminder((prev) =>
-      (prev + 1) % REMINDER_POSTS.length
-    );
+  const paginate = (newDirection: number) => {
+    setReminderState(([current]) => {
+      const next =
+        (current + newDirection + REMINDER_POSTS.length) % REMINDER_POSTS.length;
+      return [next, newDirection];
+    });
   };
 
-
-  const previousReminder = () => {
-    setCurrentReminder((prev) =>
-      (prev - 1 + REMINDER_POSTS.length) % REMINDER_POSTS.length
-    );
+  const goToReminder = (index: number) => {
+    const dir = index > currentReminder ? 1 : -1;
+    setReminderState([index, dir]);
   };
-  
+
+  const nextReminder = () => paginate(1);
+  const previousReminder = () => paginate(-1);
+
+  const variants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 100 : -100,
+      opacity: 0,
+      scale: 0.94,
+      rotate: dir > 0 ? 5 : -5,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -100 : 100,
+      opacity: 0,
+      scale: 0.94,
+      rotate: dir > 0 ? -5 : 5,
+    }),
+  };
+
   return (
     <section id="reminders" className="py-24 bg-background relative overflow-hidden">
       <IslamicPattern opacity={0.04} className="text-primary" />
@@ -50,225 +75,130 @@ export default function RemindersSection() {
           </div>
         </motion.div>
 
-        {/* Reminder post cards — styled after the channel's Instagram highlight posts */}
-        {/* Reminder post images */}
-{/* Reminder stacked card deck */}
+        {/* Deck stack */}
+        <div className="relative max-w-xl mx-auto mb-20 w-[min(85vw,520px)] aspect-square mx-auto">
 
-<div className="relative max-w-xl mx-auto mb-20 flex justify-center">
+          {/* Blurred glow "peek" layers behind the main card — not full images, just ambient depth */}
+          {[2, 1].map((offset) => {
+            const index = (currentReminder + offset) % REMINDER_POSTS.length;
+            return (
+              <motion.div
+                key={`glow-${offset}`}
+                className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden"
+                style={{ zIndex: 10 - offset }}
+                animate={{
+                  x: offset % 2 === 1 ? -16 - offset * 4 : 16 + offset * 4,
+                  y: 10 + offset * 8,
+                  rotate: offset % 2 === 1 ? -5 - offset : 5 + offset,
+                  scale: 1 - offset * 0.055,
+                  opacity: 0.55 - offset * 0.1,
+                }}
+                transition={{ type: 'spring', stiffness: 200, damping: 28 }}
+              >
+                <div
+                  className="absolute inset-0 rounded-2xl"
+                  style={{
+                    backgroundImage: `url(${REMINDER_POSTS[index].image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'blur(10px) brightness(0.65) saturate(1.2)',
+                    transform: 'scale(1.15)',
+                  }}
+                />
+                <div className="absolute inset-0 rounded-2xl shadow-[0_0_45px_14px_rgba(201,168,76,0.22)] ring-1 ring-primary/25" />
+              </motion.div>
+            );
+          })}
 
-      {/* Back cards */}
+          {/* Main card */}
+          <AnimatePresence initial={false} custom={direction} mode="popLayout">
+            <motion.div
+              key={REMINDER_POSTS[currentReminder].id}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: 'spring', stiffness: 260, damping: 32 },
+                opacity: { duration: 0.28, ease: 'easeInOut' },
+                scale: { duration: 0.32, ease: 'easeOut' },
+                rotate: { duration: 0.32, ease: 'easeOut' },
+              }}
+              drag="x"
+              dragElastic={0.25}
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(event, info) => {
+                if (info.offset.x < -80 || info.velocity.x < -400) {
+                  nextReminder();
+                } else if (info.offset.x > 80 || info.velocity.x > 400) {
+                  previousReminder();
+                }
+              }}
+              className="
+                absolute inset-0
+                z-20
+                rounded-2xl
+                overflow-hidden
+                border
+                border-primary/20
+                bg-card
+                shadow-[0_15px_45px_rgba(201,168,76,0.18)]
+                cursor-grab
+                active:cursor-grabbing
+              "
+            >
+              <img
+                src={REMINDER_POSTS[currentReminder].image}
+                alt="Reminder"
+                className="w-full h-full object-contain"
+                draggable={false}
+              />
+            </motion.div>
+          </AnimatePresence>
 
-      {[2,1].map((offset)=>{
+          {/* Left arrow */}
+          <button
+            onClick={previousReminder}
+            className="
+              absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-30
+              w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm
+              border border-primary/30 text-primary
+              hover:bg-primary hover:text-white transition-all
+            "
+          >
+            <ChevronLeft className="w-5 h-5 mx-auto" />
+          </button>
 
-      const index =
-      (currentReminder + offset) % REMINDER_POSTS.length;
+          {/* Right arrow */}
+          <button
+            onClick={nextReminder}
+            className="
+              absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-30
+              w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm
+              border border-primary/30 text-primary
+              hover:bg-primary hover:text-white transition-all
+            "
+          >
+            <ChevronRight className="w-5 h-5 mx-auto" />
+          </button>
 
+          {/* Dots */}
+          <div className="absolute -bottom-10 left-0 right-0 flex justify-center gap-2 z-30">
+            {REMINDER_POSTS.map((post, index) => (
+              <button
+                key={post.id}
+                onClick={() => goToReminder(index)}
+                className={`
+                  h-2 rounded-full transition-all
+                  ${index === currentReminder ? 'bg-primary w-6' : 'bg-primary/30 w-2'}
+                `}
+                aria-label={`Go to reminder ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
-      return (
-
-      <motion.div
-
-      key={`back-${index}`}
-
-      className="
-      absolute
-      pointer-events-none
-      w-[min(78vw,470px)]
-      aspect-square
-      rounded-2xl
-      overflow-hidden
-      border
-      border-primary/20
-      bg-card
-      shadow-[0_20px_50px_rgba(201,168,76,0.25)]
-      "
-
-      style={{
-
-      zIndex: 1,
-
-      }}
-
-      animate={{
-        x: offset === 1 ? -28 : 28,
-        y: offset * 18,
-        rotate: offset === 1 ? -6 : 6,
-        scale: 1 - offset * 0.06,
-        opacity: 0.9 - offset * 0.15,
-      }}
-      transition={{
-
-      type:"spring",
-
-      stiffness:200,
-
-      damping:25
-
-      }}
-
-      >
-
-      <img
-
-      src={REMINDER_POSTS[index].image}
-
-      alt=""
-
-      className="
-      w-full
-      h-full
-      object-contain
-      rounded-2xl
-      "
-
-      />
-
-      </motion.div>
-
-
-      )
-
-      })}
-
-
-  {/* Main card */}
-  <AnimatePresence initial={false}>
-
-    <motion.div
-      key={REMINDER_POSTS[currentReminder].id}
-
-      initial={{ x: 120 }}
-      animate={{ x: 0 }}
-      exit={{ x: -120 }}
-
-      transition={{
-        type: "spring",
-        stiffness: 320,
-        damping: 32,
-      }}
-
-      drag="x"
-      dragElastic={0.25}
-      dragConstraints={{ left: 0, right: 0 }}
-
-      onDragEnd={(event, info) => {
-
-        if (info.offset.x > 80) {
-          nextReminder();
-        }
-
-        if (info.offset.x < -80) {
-          previousReminder();
-        }
-
-      }}
-
-      className="
-        relative
-        z-10
-        w-[min(85vw,520px)]
-        aspect-square
-        rounded-2xl
-        overflow-hidden
-        border
-        border-primary/20
-        bg-card
-        shadow-[0_15px_45px_rgba(201,168,76,0.18)]
-        cursor-grab
-        active:cursor-grabbing
-      "
-    >
-
-      <img
-        src={REMINDER_POSTS[currentReminder].image}
-        alt="Reminder"
-        className="w-full h-full object-contain"
-        draggable={false}
-      />
-
-    </motion.div>
-
-  </AnimatePresence>
-
-
-  {/* Left arrow */}
-  <button
-    onClick={previousReminder}
-    className="
-      absolute
-      left-0
-      top-1/2
-      -translate-y-1/2
-      -translate-x-4
-      z-20
-      w-10
-      h-10
-      rounded-full
-      bg-background/90
-      backdrop-blur-sm
-      border
-      border-primary/30
-      text-primary
-      hover:bg-primary
-      hover:text-white
-      transition-all
-    "
-  >
-    <ChevronLeft className="w-5 h-5 mx-auto" />
-  </button>
-
-
-  {/* Right arrow */}
-  <button
-    onClick={nextReminder}
-    className="
-      absolute
-      right-0
-      top-1/2
-      -translate-y-1/2
-      translate-x-4
-      z-20
-      w-10
-      h-10
-      rounded-full
-      bg-background/90
-      backdrop-blur-sm
-      border
-      border-primary/30
-      text-primary
-      hover:bg-primary
-      hover:text-white
-      transition-all
-    "
-  >
-    <ChevronRight className="w-5 h-5 mx-auto" />
-  </button>
-
-
-  {/* Dots */}
-  <div className="absolute -bottom-10 left-0 right-0 flex justify-center gap-2">
-
-    {REMINDER_POSTS.map((post, index) => (
-      <button
-        key={post.id}
-        onClick={() => setCurrentReminder(index)}
-        className={`
-          h-2
-          rounded-full
-          transition-all
-          ${
-            index === currentReminder
-              ? "bg-primary w-6"
-              : "bg-primary/30 w-2"
-          }
-        `}
-        aria-label={`Go to reminder ${index + 1}`}
-      />
-    ))}
-
-  </div>
-
-</div>
         {/* Note about updating */}
         <p className="text-center text-muted-foreground text-xs mb-10 -mt-4 font-sans">
           {t(
@@ -285,8 +215,7 @@ export default function RemindersSection() {
           transition={{ duration: 0.7 }}
           className="flex flex-col sm:flex-row gap-5 max-w-xl mx-auto"
         >
-          {/* YouTube card */}
-          <a
+          
             href="https://www.youtube.com/@%D8%B5%D9%88%D8%AA_%D8%A7%D9%84%D8%AD%D8%B1%D9%85"
             target="_blank"
             rel="noopener noreferrer"
@@ -302,8 +231,7 @@ export default function RemindersSection() {
             </div>
           </a>
 
-          {/* Instagram card */}
-          <a
+          
             href="https://www.instagram.com/sawtul_haram/"
             target="_blank"
             rel="noopener noreferrer"
@@ -323,5 +251,3 @@ export default function RemindersSection() {
     </section>
   );
 }
-
-
