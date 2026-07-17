@@ -22,7 +22,7 @@ function getTodayAyah() {
   ];
 }
 
-const CACHE_KEY = "daily-ayah-cache-v3";
+const CACHE_KEY = "daily-ayah-cache-v4";
 
 
 function getCachedAyah() {
@@ -54,72 +54,67 @@ function saveCachedAyah(data: any) {
     })
   );
 }
-
 async function fetchDailyAyah() {
 
- const cached = getCachedAyah();
+  const cached = getCachedAyah();
 
   if (cached) {
     return cached;
   }
 
+
   const reference = getTodayAyah();
 
+
   const response = await fetch(
-    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?language=en&fields=text_uthmani&translations=131&words=false`
+    `https://api.alquran.cloud/v1/ayah/${reference.surah}:${reference.ayah}/editions/quran-uthmani,en.sahih`
   );
 
 
-  if (!response.ok)
-    throw new Error("Quran API error");
+  if (!response.ok) {
+    throw new Error("AlQuran Cloud API error");
+  }
 
 
-  const data = await response.json();  // fixing translation
-
-  const verse = data.verse;
-
-  console.log("TRANSLATIONS OBJECT:", verse.translations);
+  const data = await response.json();
 
 
-  // Fetch Saheeh International translation separately
-  const translationResponse = await fetch(
-    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?translations=131`
-  );
-
-  const translationData = await translationResponse.json();
-
-  console.log("SECOND FULL RESPONSE:", translationData);
-  console.log("SECOND VERSE:", translationData.verse);
-
-  const translation =
-    translationData.verse.translations?.[0]?.text
-      ?.replace(/<[^>]*>/g, '')
-      .trim();
+  const arabicVerse = data.data[0];
+  const englishVerse = data.data[1];
 
 
   const chapterResponse = await fetch(
-    `https://api.quran.com/api/v4/chapters/${reference.surah}?language=en`
+    `https://api.alquran.cloud/v1/surah/${reference.surah}`
   );
 
 
-  const chapterData =
-    await chapterResponse.json();
+  const chapterData = await chapterResponse.json();
 
 
   const result = {
-  arabic: verse.text_uthmani,
-  translation,
-  verseNumber: reference.ayah,
-  chapterArabic: chapterData.chapter.name_arabic,
-  chapterEnglish: chapterData.chapter.name_simple,
-  chapterId: reference.surah
-};
+
+    arabic: arabicVerse.text,
+
+    translation: englishVerse.text,
+
+    verseNumber: reference.ayah,
+
+    chapterArabic:
+      chapterData.data.name,
+
+    chapterEnglish:
+      chapterData.data.englishName,
+
+    chapterId:
+      reference.surah
+
+  };
 
 
-saveCachedAyah(result);
+  saveCachedAyah(result);
 
 
-return result;
+  return result;
 }
 
 export default function DailyAyah() {
