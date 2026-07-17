@@ -66,7 +66,7 @@ async function fetchDailyAyah() {
   const reference = getTodayAyah();
 
   const response = await fetch(
-    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?language=en&fields=text_uthmani&translations=131`
+    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?fields=text_uthmani&translations=131`
   );
 
 
@@ -77,13 +77,9 @@ async function fetchDailyAyah() {
   const data = await response.json();
 
   const verse = data.verse;
-  alert(JSON.stringify(data, null, 2));  // temporarily added
-
-  console.log("FULL RESPONSE:", data);
-  console.log("VERSE:", verse);
 
   const translation =
-    verse.translations?.[0]?.text
+    data.translations?.[0]?.text  // fixing translation
       ?.replace(/<[^>]*>/g, '')
       .trim();
 
