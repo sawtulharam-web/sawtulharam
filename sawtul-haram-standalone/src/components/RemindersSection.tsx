@@ -12,16 +12,15 @@ export default function RemindersSection() {
   const [currentReminder, setCurrentReminder] = useState(0);
 
   const nextReminder = () => {
-    setCurrentReminder(
-      (currentReminder + 1) % REMINDER_POSTS.length
+    setCurrentReminder((prev) =>
+      (prev + 1) % REMINDER_POSTS.length
     );
   };
 
 
   const previousReminder = () => {
-    setCurrentReminder(
-      (currentReminder - 1 + REMINDER_POSTS.length) %
-      REMINDER_POSTS.length
+    setCurrentReminder((prev) =>
+      (prev - 1 + REMINDER_POSTS.length) % REMINDER_POSTS.length
     );
   };
   
@@ -55,34 +54,88 @@ export default function RemindersSection() {
         {/* Reminder post images */}
 {/* Reminder stacked card deck */}
 
-<div className="relative max-w-xl mx-auto mb-14 flex justify-center">
+<div className="relative max-w-xl mx-auto mb-20 flex justify-center">
 
-  {/* Back cards */}
-  {[2, 1].map((offset) => {
-    const index =
+      {/* Back cards */}
+
+      {[2,1].map((offset)=>{
+
+      const index =
       (currentReminder + offset) % REMINDER_POSTS.length;
 
-    return (
+
+      return (
+
       <motion.div
-        key={`back-${REMINDER_POSTS[index].id}`}
-        className="absolute w-[min(85vw,520px)] aspect-square rounded-2xl border border-primary/10 bg-card shadow-[0_8px_35px_rgba(201,168,76,0.12)]"
-        style={{
-          transform: `translateY(${offset * 12}px) scale(${1 - offset * 0.03})`,
-          zIndex: 1,
-        }}
-        animate={{
-          opacity: 0.45 - offset * 0.1,
-        }}
+
+      key={`back-${index}`}
+
+      className="
+      absolute
+      pointer-events-none
+      w-[min(78vw,470px)]
+      aspect-square
+      rounded-2xl
+      overflow-hidden
+      border
+      border-primary/20
+      bg-card
+      shadow-[0_15px_45px_rgba(201,168,76,0.18)]
+      "
+
+      style={{
+
+      zIndex: 1,
+
+      }}
+
+      animate={{
+
+      x: offset === 1 ? -18 : 18,
+
+      y: offset * 12,
+
+      rotate: offset === 1 ? -4 : 4,
+
+      scale: 1 - offset * 0.05,
+
+      opacity: 0.55 - offset * 0.15,
+
+      }}
+
+      transition={{
+
+      type:"spring",
+
+      stiffness:200,
+
+      damping:25
+
+      }}
+
       >
-        <img
-          src={REMINDER_POSTS[index].image}
-          alt=""
-          className="w-full h-full object-contain rounded-2xl"
-          draggable={false}
-        />
+
+      <img
+
+      src={REMINDER_POSTS[index].image}
+
+      alt=""
+
+      className="
+      w-full
+      h-full
+      object-contain
+      rounded-2xl
+      "
+
+      />
+
       </motion.div>
-    );
-  })}
+
+
+      )
+
+      })}
 
 
   {/* Main card */}
@@ -90,24 +143,32 @@ export default function RemindersSection() {
 
     <motion.div
       key={REMINDER_POSTS[currentReminder].id}
-      initial={{
-        opacity: 0,
-        scale: 0.96,
-        x: 40,
-      }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        x: 0,
-      }}
-      exit={{
-        opacity: 0,
-        scale: 0.96,
-        x: -40,
-      }}
+
+      initial={{ opacity: 0, x: 80 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -80 }}
+
       transition={{
-        duration: 0.45,
+        type: "spring",
+        stiffness: 260,
+        damping: 25,
       }}
+
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+
+      onDragEnd={(event, info) => {
+
+        if (info.offset.x < -80) {
+          nextReminder();
+        }
+
+        if (info.offset.x > 80) {
+          previousReminder();
+        }
+
+      }}
+
       className="
         relative
         z-10
@@ -119,6 +180,8 @@ export default function RemindersSection() {
         border-primary/20
         bg-card
         shadow-[0_15px_45px_rgba(201,168,76,0.18)]
+        cursor-grab
+        active:cursor-grabbing
       "
     >
 
