@@ -78,6 +78,8 @@ if (cached) {
 
   const verse = data.verse;
 
+  console.log("FULL RESPONSE:", data);
+  console.log("VERSE:", verse);
 
   const translation =
     verse.translations?.[0]?.text
