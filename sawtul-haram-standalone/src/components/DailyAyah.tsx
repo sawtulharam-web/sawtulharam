@@ -57,11 +57,11 @@ function saveCachedAyah(data: any) {
 
 async function fetchDailyAyah() {
 
- // const cached = getCachedAyah();
+ const cached = getCachedAyah();
 
-  // if (cached) {
-    // return cached;
-  // }
+  if (cached) {
+    return cached;
+  }
 
   const reference = getTodayAyah();
 
@@ -83,17 +83,18 @@ async function fetchDailyAyah() {
 
   // Fetch Saheeh International translation separately
   const translationResponse = await fetch(
-    `https://api.quran.com/api/v4/verses/${reference.surah}:${reference.ayah}/translations/131`
+    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?translations=131`
   );
 
   const translationData = await translationResponse.json();
 
-  console.log("TRANSLATION RESPONSE:", translationData);
+  console.log("SECOND FULL RESPONSE:", translationData);
+  console.log("SECOND VERSE:", translationData.verse);
 
   const translation =
-    translationData.translations?.[0]?.text
+    translationData.verse.translations?.[0]?.text
       ?.replace(/<[^>]*>/g, '')
-      .trim() || "Translation unavailable";
+      .trim();
 
 
   const chapterResponse = await fetch(
