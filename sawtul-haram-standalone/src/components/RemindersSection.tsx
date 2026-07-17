@@ -250,4 +250,6 @@ export default function RemindersSection() {
       </div>
     </section>
   );
+
+  
 }
