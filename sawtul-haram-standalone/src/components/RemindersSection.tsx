@@ -80,7 +80,7 @@ export default function RemindersSection() {
       border
       border-primary/20
       bg-card
-      shadow-[0_15px_45px_rgba(201,168,76,0.18)]
+      shadow-[0_20px_50px_rgba(201,168,76,0.25)]
       "
 
       style={{
@@ -90,19 +90,12 @@ export default function RemindersSection() {
       }}
 
       animate={{
-
-      x: offset === 1 ? -18 : 18,
-
-      y: offset * 12,
-
-      rotate: offset === 1 ? -4 : 4,
-
-      scale: 1 - offset * 0.05,
-
-      opacity: 0.55 - offset * 0.15,
-
+        x: offset === 1 ? -28 : 28,
+        y: offset * 18,
+        rotate: offset === 1 ? -6 : 6,
+        scale: 1 - offset * 0.06,
+        opacity: 0.9 - offset * 0.15,
       }}
-
       transition={{
 
       type:"spring",
@@ -139,31 +132,32 @@ export default function RemindersSection() {
 
 
   {/* Main card */}
-  <AnimatePresence mode="wait">
+  <AnimatePresence initial={false}>
 
     <motion.div
       key={REMINDER_POSTS[currentReminder].id}
 
-      initial={{ opacity: 0, x: 80 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -80 }}
+      initial={{ x: 120 }}
+      animate={{ x: 0 }}
+      exit={{ x: -120 }}
 
       transition={{
         type: "spring",
-        stiffness: 260,
-        damping: 25,
+        stiffness: 320,
+        damping: 32,
       }}
 
       drag="x"
+      dragElastic={0.25}
       dragConstraints={{ left: 0, right: 0 }}
 
       onDragEnd={(event, info) => {
 
-        if (info.offset.x < -80) {
+        if (info.offset.x > 80) {
           nextReminder();
         }
 
-        if (info.offset.x > 80) {
+        if (info.offset.x < -80) {
           previousReminder();
         }
 
