@@ -88,7 +88,8 @@ async function fetchDailyAyah() {
 
   const translationData = await translationResponse.json();
 
-  console.log("SECOND API RESPONSE:", translationData);
+  console.log("SECOND FULL RESPONSE:", translationData);
+  console.log("SECOND VERSE:", translationData.verse);
 
   const translation =
     translationData.verse.translations?.[0]?.text
