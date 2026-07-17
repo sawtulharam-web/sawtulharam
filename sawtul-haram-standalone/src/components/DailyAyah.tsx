@@ -83,18 +83,17 @@ async function fetchDailyAyah() {
 
   // Fetch Saheeh International translation separately
   const translationResponse = await fetch(
-    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?translations=131`
+    `https://api.quran.com/api/v4/verses/${reference.surah}:${reference.ayah}/translations/131`
   );
 
   const translationData = await translationResponse.json();
 
-  console.log("SECOND FULL RESPONSE:", translationData);
-  console.log("SECOND VERSE:", translationData.verse);
+  console.log("TRANSLATION RESPONSE:", translationData);
 
   const translation =
-    translationData.verse.translations?.[0]?.text
+    translationData.translations?.[0]?.text
       ?.replace(/<[^>]*>/g, '')
-      .trim();
+      .trim() || "Translation unavailable";
 
 
   const chapterResponse = await fetch(
