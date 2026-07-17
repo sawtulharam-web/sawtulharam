@@ -22,7 +22,7 @@ function getTodayAyah() {
   ];
 }
 
-const CACHE_KEY = "daily-ayah-cache-v2";
+const CACHE_KEY = "daily-ayah-cache-v3";
 
 
 function getCachedAyah() {
@@ -74,20 +74,27 @@ async function fetchDailyAyah() {
     throw new Error("Quran API error");
 
 
-  const data = await response.json();
+  const data = await response.json();  // fixing translation
 
   const verse = data.verse;
 
-  console.log("AFTER API CHANGE:", verse);
-  console.log("TRANSLATIONS NOW:", verse.translations);
+
+  // Fetch Saheeh International translation separately
+  const translationResponse = await fetch(
+    `https://api.quran.com/api/v4/verses/by_key/${reference.surah}:${reference.ayah}?translations=131`
+  );
+
+  const translationData = await translationResponse.json();
+
+  const translation =
+    translationData.verse.translations?.[0]?.text
+      ?.replace(/<[^>]*>/g, '')
+      .trim();
+
+  console.log("TRANSLATION RESULT:", translation);
 
   console.log("VERSE:", verse);
   console.log("TRANSLATIONS:", verse.translations);
-
-  const translation =
-    data.translations?.[0]?.text  // fixing translation
-      ?.replace(/<[^>]*>/g, '')
-      .trim();
 
 
   const chapterResponse = await fetch(
