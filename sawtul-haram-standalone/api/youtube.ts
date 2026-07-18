@@ -4,82 +4,87 @@ export default async function handler(req: any, res: any) {
 
     if (!apiKey) {
       return res.status(500).json({
-        error: "YouTube API key is missing",
+        error: "YouTube API key missing",
       });
     }
 
     const channelId = "UCKjpCiooBil-40uM0hOi4NQ";
 
 
-    // 1. Get latest uploads
+    // Get latest uploads
     const searchResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=25&type=video`
+      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50&type=video`
     );
 
     const searchData = await searchResponse.json();
 
-    if (!searchResponse.ok) {
-      return res.status(searchResponse.status).json(searchData);
-    }
-
 
     const videoIds = searchData.items
-      .map((item: any) => item.id.videoId)
+      .map((item:any)=>item.id.videoId)
       .filter(Boolean)
       .join(",");
 
 
-    // 2. Get video details
+    // Get details
     const detailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
     );
 
     const detailsData = await detailsResponse.json();
 
-    if (!detailsResponse.ok) {
-      return res.status(detailsResponse.status).json(detailsData);
-    }
 
-
-    // 3. Filter Shorts using YouTube's thumbnail ratio
     const videos = detailsData.items
-      .filter((video: any) => {
+      .filter((video:any)=>{
 
         const thumbnail =
           video.snippet.thumbnails.maxres ||
           video.snippet.thumbnails.standard ||
-          video.snippet.thumbnails.high ||
-          video.snippet.thumbnails.medium ||
-          video.snippet.thumbnails.default;
+          video.snippet.thumbnails.high;
 
 
-        // Vertical thumbnail = Short
+        if (!thumbnail) return true;
+
+
+        console.log(
+          video.snippet.title,
+          thumbnail.width,
+          thumbnail.height
+        );
+
+
+        // remove vertical videos
         if (thumbnail.height > thumbnail.width) {
           return false;
         }
 
 
         return true;
+
       })
-      .map((video: any) => ({
+      .map((video:any)=>({
+
         id: video.id,
+
         title: video.snippet.title,
+
         thumbnail:
           video.snippet.thumbnails.high.url,
+
         publishedAt:
           video.snippet.publishedAt,
+
       }));
 
 
     return res.status(200).json(videos);
 
 
-  } catch (error) {
+  } catch(error){
 
     console.error(error);
 
     return res.status(500).json({
-      error: "Failed to fetch YouTube videos",
+      error:"Failed fetching videos",
     });
 
   }
