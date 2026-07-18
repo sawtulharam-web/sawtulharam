@@ -66,7 +66,7 @@ export default function ImamModal({ sheikh, onClose }: Props) {
 
               {/* Name */}
               <div>
-                <h2 className="font-arabic text-2xl font-bold text-foreground mb-1">
+                <h2 className="font-arabic-secondary text-2xl font-bold text-foreground mb-1">
                   {sheikh.nameAr}
                 </h2>
                 <p className="font-sans text-sm text-muted-foreground tracking-wide">
@@ -82,7 +82,7 @@ export default function ImamModal({ sheikh, onClose }: Props) {
               </div>
 
               {/* Title badge */}
-              <span className="inline-block px-4 py-1.5 border border-primary/30 rounded-full text-primary text-sm font-arabic bg-primary/5">
+              <span className="inline-block px-4 py-1.5 border border-primary/30 rounded-full text-primary text-sm font-arabic-secondary bg-primary/5">
                 {t(sheikh.titleAr, sheikh.titleEn)}
               </span>
 
@@ -90,7 +90,7 @@ export default function ImamModal({ sheikh, onClose }: Props) {
               <p
                 className={`text-foreground/75 leading-relaxed max-h-48 overflow-y-auto ${
                   lang === 'ar'
-                    ? 'font-arabic text-base text-right'
+                    ? 'font-arabic-secondary text-base text-right'
                     : 'font-sans text-sm text-left'
                 }`}
                 dir={lang === 'ar' ? 'rtl' : 'ltr'}
