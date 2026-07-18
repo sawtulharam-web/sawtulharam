@@ -30,7 +30,7 @@ export default function ImamSchedule() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic' : 'font-serif'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
             {t('الجدول الأسبوعي للأئمة', 'Weekly Imam Schedule')}
           </h2>
           <div className="flex items-center justify-center gap-4 mb-5">
@@ -42,7 +42,7 @@ export default function ImamSchedule() {
           {/* Period badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-card border border-primary/25 rounded-full shadow-sm">
             <CalendarDays className="w-4 h-4 text-primary" />
-            <span className={`text-sm text-foreground/75 ${lang === 'ar' ? 'font-arabic text-base' : 'font-sans'}`}>
+            <span className={`text-sm text-foreground/75 ${lang === 'ar' ? 'font-arabic-secondary text-base' : 'font-sans'}`}>
               {t(weeklySchedule.periodAr, weeklySchedule.periodEn)}
             </span>
           </div>
@@ -69,7 +69,7 @@ export default function ImamSchedule() {
                   {/* Prayer label sidebar */}
                   <div className="w-20 md:w-24 bg-primary/90 flex flex-col items-center justify-center text-white py-4 px-2 shrink-0">
                     <PrayerIcon className="w-5 h-5 mb-1 opacity-90" strokeWidth={1.75} />
-                    <span className="font-arabic text-base font-bold leading-tight text-center">
+                    <span className="font-arabic-secondary text-base font-bold leading-tight text-center">
                       {slot.prayerAr}
                     </span>
                     <span className="font-sans text-[10px] opacity-80 mt-0.5 tracking-wide">
@@ -98,7 +98,7 @@ export default function ImamSchedule() {
                         <p className="text-[10px] text-primary font-sans uppercase tracking-widest mb-0.5">
                           {t('الإمام', 'Imam')}
                         </p>
-                        <p className="font-arabic text-sm font-semibold text-foreground leading-snug">
+                        <p className="font-arabic-secondary text-sm font-semibold text-foreground leading-snug">
                           {imam.nameAr}
                         </p>
                         <p className="font-sans text-[11px] text-muted-foreground mt-0.5">
@@ -127,7 +127,7 @@ export default function ImamSchedule() {
                         <p className="text-[10px] text-muted-foreground font-sans uppercase tracking-widest mb-0.5">
                           {t('الاحتياطي', 'Backup')}
                         </p>
-                        <p className="font-arabic text-sm text-foreground leading-snug">
+                        <p className="font-arabic-secondary text-sm text-foreground leading-snug">
                           {backup.nameAr}
                         </p>
                         <p className="font-sans text-[11px] text-muted-foreground mt-0.5">
