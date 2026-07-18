@@ -34,10 +34,10 @@ export default function Sheikhs() {
             transition={{ duration: 0.8 }}
             className="text-center mb-14 px-6"
           >
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic' : 'font-serif'}`}>
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
               {t('أئمة الحرم المكي', 'Imams of the Haram')}
             </h2>
-            <p className={`text-muted-foreground text-sm mb-6 ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`}>
+            <p className={`text-muted-foreground text-sm mb-6 ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
               {t('اضغط على أي بطاقة لمزيد من التفاصيل', 'Tap any card for details')}
             </p>
             <div className="flex items-center justify-center gap-4">
@@ -105,7 +105,7 @@ export default function Sheikhs() {
 
                     {/* Name */}
                     <div className="text-center">
-                      <h3 className="font-arabic text-lg font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                      <h3 className="font-arabic-secondary text-lg font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
                         {sheikh.nameAr}
                       </h3>
                       <p className="font-sans text-xs text-muted-foreground mt-1 tracking-wide">
