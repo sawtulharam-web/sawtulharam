@@ -12,7 +12,7 @@ export default async function handler(req: any, res: any) {
 
     // 1. Get latest uploaded videos
     const searchResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=15&type=video`
+      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=25&type=video`
     );
 
     const searchData = await searchResponse.json();
@@ -29,7 +29,7 @@ export default async function handler(req: any, res: any) {
 
     // 2. Get video details
     const detailsResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails,player`
+        `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
     );
 
     const detailsData = await detailsResponse.json();
@@ -43,21 +43,21 @@ export default async function handler(req: any, res: any) {
     const videos = detailsData.items
     .filter((video: any) => {
 
-        const embedHtml = video.player?.embedHtml || '';
+        const thumbnail =
+            video.snippet.thumbnails.maxres ||
+            video.snippet.thumbnails.standard ||
+            video.snippet.thumbnails.high ||
+            video.snippet.thumbnails.medium ||
+            video.snippet.thumbnails.default;
+        
+        console.log(
+            video.snippet.title,
+            thumbnail.width,
+            thumbnail.height
+        );
 
-        const widthMatch = embedHtml.match(/width="(\d+)"/);
-        const heightMatch = embedHtml.match(/height="(\d+)"/);
-
-        if (!widthMatch || !heightMatch) {
-        return true;
-        }
-
-        const width = Number(widthMatch[1]);
-        const height = Number(heightMatch[1]);
-
-        // Remove vertical Shorts
-        if (height > width) {
-        return false;
+        if (thumbnail.height > thumbnail.width) {
+            return false;
         }
 
         return true;
