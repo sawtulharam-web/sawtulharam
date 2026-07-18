@@ -29,7 +29,7 @@ export default async function handler(req: any, res: any) {
 
     // 2. Get video details
     const detailsResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
+        `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails,player`
     );
 
     const detailsData = await detailsResponse.json();
@@ -39,44 +39,30 @@ export default async function handler(req: any, res: any) {
     }
 
 
-    // Convert ISO duration to seconds
-    function durationToSeconds(duration: string) {
-      const match = duration.match(
-        /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
-      );
-
-      if (!match) return 0;
-
-      const hours = Number(match[1] || 0);
-      const minutes = Number(match[2] || 0);
-      const seconds = Number(match[3] || 0);
-
-      return hours * 3600 + minutes * 60 + seconds;
-    }
-
-
-    // 3. Filter out Shorts
+    // 3. Filter out Shorts (vertical videos)
     const videos = detailsData.items
-      .filter((video: any) => {
+    .filter((video: any) => {
 
-        const duration = durationToSeconds(
-          video.contentDetails.duration
-        );
+        const embedHtml = video.player?.embedHtml || '';
 
-        const width =
-          video.contentDetails.dimension === '2d'
-            ? video.snippet.thumbnails.high.width
-            : null;
+        const widthMatch = embedHtml.match(/width="(\d+)"/);
+        const heightMatch = embedHtml.match(/height="(\d+)"/);
 
+        if (!widthMatch || !heightMatch) {
+        return true;
+        }
 
-        // Remove very short clips
-        if (duration < 60) {
-          return false;
+        const width = Number(widthMatch[1]);
+        const height = Number(heightMatch[1]);
+
+        // Remove vertical Shorts
+        if (height > width) {
+        return false;
         }
 
         return true;
-      })
-      .map((video: any) => ({
+    })
+    .map((video: any) => ({
         id: video.id,
         title: video.snippet.title,
         thumbnail:
