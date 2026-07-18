@@ -108,7 +108,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.1 }}
-          className={`text-base md:text-lg text-[#5A4A2E]/65 max-w-xl leading-relaxed ${lang === 'ar' ? 'font-arabic' : 'font-serif italic'}`}
+          className={`text-base md:text-lg text-[#5A4A2E]/65 max-w-xl leading-relaxed ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif italic'}`}
         >
           {t(
             'أصوات الحرم المكي الشريف — تلاوات وذكر وعلم',
@@ -124,7 +124,7 @@ export default function Hero() {
         transition={{ delay: 1.8, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#5A4A2E]/45"
       >
-        <span className="text-xs font-serif tracking-widest uppercase">
+        <span className={`text-xs tracking-widest uppercase ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
           {t('اكتشف', 'Explore')}
         </span>
         <motion.div
