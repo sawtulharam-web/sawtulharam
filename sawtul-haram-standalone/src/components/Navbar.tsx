@@ -51,7 +51,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:text-primary text-foreground/70 ${
-                lang === 'ar' ? 'font-arabic text-base' : 'font-sans'
+                lang === 'ar' ? 'font-arabic-secondary text-base' : 'font-sans'
               }`}
             >
               {t(link.ar, link.en)}
@@ -97,7 +97,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={`py-2.5 px-3 rounded-lg text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors ${
-                    lang === 'ar' ? 'font-arabic text-lg text-right' : 'font-sans text-sm'
+                    lang === 'ar' ? 'font-arabic-secondary text-lg text-right' : 'font-sans text-sm'
                   }`}
                 >
                   {t(link.ar, link.en)}
