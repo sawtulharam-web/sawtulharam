@@ -72,7 +72,7 @@ export default function Videos() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${lang === 'ar' ? 'font-arabic' : 'font-serif'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
             {t('مقاطع الفيديو', 'Video Gallery')}
           </h2>
           <div className="flex items-center justify-center gap-4">
@@ -115,10 +115,10 @@ export default function Videos() {
                 </div>
               </div>
               <div className="p-4 border-t border-primary/15 flex flex-col gap-1">
-                <h3 className={`text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2 ${lang === 'ar' ? 'font-arabic text-base' : 'font-sans'}`}>
+                <h3 className={`text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2 ${lang === 'ar' ? 'font-arabic-secondary text-base' : 'font-sans'}`}>
                   {t(video.titleAr, video.titleEn)}
                 </h3>
-                <p className={`text-xs text-muted-foreground ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`}>
+                <p className={`text-xs text-muted-foreground ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
                   {t(video.sheikhAr, video.sheikhEn)}
                 </p>
               </div>
