@@ -10,8 +10,7 @@ export default async function handler(req: any, res: any) {
 
     const channelId = "UCKjpCiooBil-40uM0hOi4NQ";
 
-
-    // 1. Get latest uploads
+    // 1. Get latest videos
     const searchResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=25&type=video`
     );
@@ -29,51 +28,60 @@ export default async function handler(req: any, res: any) {
       .join(",");
 
 
-
-    // 2. Get video details
+    // 2. Get details including duration
     const detailsResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails,player`
+      `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
     );
 
 
     const detailsData = await detailsResponse.json();
 
-
     if (!detailsResponse.ok) {
       return res.status(detailsResponse.status).json(detailsData);
     }
 
-    console.log(
-        detailsData.items.map((video: any) => ({
-            id: video.id,
-            title: video.snippet.title,
-            contentDetails: video.contentDetails,
-            player: video.player,
-        }))
-    );
+
+    // 3. Keep only normal videos
+    // Shorts are detected by YouTube's vertical format.
+    // We temporarily use duration + title data only for testing.
+    const videos = detailsData.items
+      .filter((video: any) => {
+
+        const duration = video.contentDetails.duration;
+
+        // Remove obvious Shorts under 60 seconds
+        // (later we can improve with real aspect ratio detection)
+        if (
+          duration.includes("S") &&
+          !duration.includes("M")
+        ) {
+          return false;
+        }
+
+        return true;
+      })
+      .map((video: any) => ({
+        id: video.id,
+        title: video.snippet.title,
+        thumbnail:
+          video.snippet.thumbnails.high.url,
+        publishedAt:
+          video.snippet.publishedAt,
+      }));
 
 
-    // 3. Return videos for testing
-    const videos = detailsData.items.map((video: any) => ({
-      id: video.id,
-      title: video.snippet.title,
-      thumbnail:
-        video.snippet.thumbnails.high?.url ||
-        video.snippet.thumbnails.medium?.url,
-      publishedAt: video.snippet.publishedAt,
-      duration: video.contentDetails.duration,
-      embed: video.player?.embedHtml,
-    }));
-
+    console.log("FINAL VIDEOS:", videos);
 
     return res.status(200).json(videos);
 
 
   } catch (error) {
+
     console.error(error);
 
     return res.status(500).json({
       error: "Failed to fetch YouTube videos",
     });
+
   }
 }
