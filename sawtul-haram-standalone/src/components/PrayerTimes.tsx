@@ -66,7 +66,7 @@ export default function PrayerTimes() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${lang === 'ar' ? 'font-arabic' : 'font-serif'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
             {t('أوقات الصلاة في مكة المكرمة', 'Prayer Times in Makkah')}
           </h2>
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -77,7 +77,7 @@ export default function PrayerTimes() {
           
           {data?.data?.date && (
             <div className="flex flex-col items-center gap-1 text-muted-foreground">
-              <p className="font-arabic text-xl">{data.data.date.hijri.day} {data.data.date.hijri.month.ar} {data.data.date.hijri.year}</p>
+              <p className="font-arabic-secondary text-xl">{data.data.date.hijri.day} {data.data.date.hijri.month.ar} {data.data.date.hijri.year}</p>
               <p className="font-sans text-sm">{format(new Date(), 'EEEE, MMMM d, yyyy')}</p>
             </div>
           )}
@@ -91,7 +91,7 @@ export default function PrayerTimes() {
               ))}
             </div>
           ) : isError ? (
-            <p className="text-center text-muted-foreground py-8 font-arabic">
+            <p className="text-center text-muted-foreground py-8 font-arabic-secondary">
               {t('تعذّر تحميل أوقات الصلاة. يرجى المحاولة مجدداً.', 'Unable to load prayer times. Please try again later.')}
             </p>
           ) : (
@@ -125,11 +125,10 @@ export default function PrayerTimes() {
                         : 'bg-card border-border hover:border-primary/50 text-foreground'
                     }`}
                   >
-                    <h3 className={`text-xl font-medium md:mb-4 ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`}>
-                      {t(prayer.ar, prayer.en)}
+                      <h3 className={`text-xl font-medium md:mb-4 ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
+                        {t(prayer.ar, prayer.en)}
                     </h3>
-                    <div className={`text-2xl font-bold tracking-wider ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`}>
-                      {lang === 'ar' ? time : timeEn}
+                    <div className={`text-2xl font-bold tracking-wider ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
                     </div>
                   </motion.div>
                 );
