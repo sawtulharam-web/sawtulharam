@@ -168,7 +168,7 @@ export default function DailyAyah() {
           {/* Heading */}
           <div className="flex items-center justify-between mb-12">
             <div className="w-1/3 h-[1px] bg-gradient-to-r from-transparent to-primary/50" />
-            <h2 className={`text-2xl md:text-3xl font-medium text-primary ${lang === 'ar' ? 'font-arabic' : 'font-serif'}`}>
+            <h2 className={`text-2xl md:text-3xl font-medium text-primary ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
               {t('آية من كتاب الله', 'A Verse from the Quran')}
             </h2>
             <div className="w-1/3 h-[1px] bg-gradient-to-l from-transparent to-primary/50" />
@@ -177,11 +177,11 @@ export default function DailyAyah() {
           {isFetching && !data ? (
             <div className="py-20 flex flex-col items-center justify-center opacity-50">
               <RefreshCw className="w-8 h-8 animate-spin text-primary mb-4" />
-              <p className="font-arabic text-xl text-primary/80">جاري التحميل...</p>
+              <p className="font-arabic-secondary text-xl text-primary/80">جاري التحميل...</p>
             </div>
           ) : isError ? (
             <div className="py-16 text-center">
-              <p className="font-arabic text-xl text-primary/80 mb-4">
+              <p className="font-arabic-secondary text-xl text-primary/80 mb-4">
                 {t('تعذّر تحميل الآية. يرجى المحاولة مجدداً.', 'Unable to load verse. Please try again.')}
               </p>
               <button
@@ -189,7 +189,7 @@ export default function DailyAyah() {
                 className="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all"
               >
                 <RefreshCw className="w-4 h-4" />
-                <span className={lang === 'ar' ? 'font-arabic' : 'font-sans'}>{t('حاول مجدداً', 'Try Again')}</span>
+                <span className={lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}>{t('حاول مجدداً', 'Try Again')}</span>
               </button>
             </div>
           ) : data ? (
@@ -258,7 +258,7 @@ export default function DailyAyah() {
                     📖
                   </span>
 
-                  <span className={lang === 'ar' ? 'font-arabic' : 'font-sans'}>
+                  <span className={lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}>
                     {t('اقرأ تفسير الآية', 'Read Authentic Tafsir')}
                   </span>
                 </a>
