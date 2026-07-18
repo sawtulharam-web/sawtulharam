@@ -48,10 +48,10 @@ export default function ImamModal({ sheikh, onClose }: Props) {
               <X className="w-4 h-4" />
             </button>
 
-            <div className="p-8 flex flex-col items-center gap-5 text-center">
+            <div className="p-6 md:p-7 flex flex-col items-center gap-4 text-center">
               {/* Portrait */}
               <div
-                className="w-36 h-36 rounded-full overflow-hidden shrink-0"
+                className="w-28 h-28 rounded-full overflow-hidden shrink-0"
                 style={{
                   border: '2.5px solid rgba(201,168,76,0.5)',
                   boxShadow: '0 0 0 6px rgba(201,168,76,0.12)',
@@ -66,7 +66,7 @@ export default function ImamModal({ sheikh, onClose }: Props) {
 
               {/* Name */}
               <div>
-                <h2 className="font-arabic-secondary text-2xl font-bold text-foreground mb-1">
+                <h2 className="font-arabic-secondary text-xl font-semibold text-foreground mb-1">
                   {sheikh.nameAr}
                 </h2>
                 <p className="font-sans text-sm text-muted-foreground tracking-wide">
@@ -82,16 +82,16 @@ export default function ImamModal({ sheikh, onClose }: Props) {
               </div>
 
               {/* Title badge */}
-              <span className="inline-block px-4 py-1.5 border border-primary/30 rounded-full text-primary text-sm font-arabic-secondary bg-primary/5">
+              <span className="inline-block px-3 py-1 border border-primary/30 rounded-full text-primary text-xs font-arabic-secondary bg-primary/5">
                 {t(sheikh.titleAr, sheikh.titleEn)}
               </span>
 
               {/* Bio */}
               <p
-                className={`text-foreground/75 leading-relaxed max-h-48 overflow-y-auto ${
+                className={`text-foreground/75 leading-relaxed max-h-56 overflow-y-auto ${
                   lang === 'ar'
-                    ? 'font-arabic-secondary text-base text-right'
-                    : 'font-sans text-sm text-left'
+                    ? 'font-arabic-secondary text-sm md:text-base text-right leading-loose'
+                    : 'font-sans text-sm text-left leading-relaxed'
                 }`}
                 dir={lang === 'ar' ? 'rtl' : 'ltr'}
               >
