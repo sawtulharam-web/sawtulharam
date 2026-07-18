@@ -105,7 +105,7 @@ export default function Sheikhs() {
 
                     {/* Name */}
                     <div className="text-center">
-                      <h3 className="font-arabic-secondary text-lg font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                      <h3 className="font-arabic-secondary text-base font-semibold text-foreground leading-snug group-hover:text-primary transition-colors">
                         {sheikh.nameAr}
                       </h3>
                       <p className="font-sans text-xs text-muted-foreground mt-1 tracking-wide">
