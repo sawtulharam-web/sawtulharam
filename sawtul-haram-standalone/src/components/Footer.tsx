@@ -19,7 +19,7 @@ export default function Footer() {
           className="w-40 h-auto mb-6"
         />
 
-        <p className={`text-foreground/60 mb-8 max-w-md text-center ${lang === 'ar' ? 'font-arabic text-lg' : 'font-sans text-sm'}`}>
+        <p className={`text-foreground/60 mb-8 max-w-md text-center ${lang === 'ar' ? 'font-arabic-secondary text-lg' : 'font-sans text-sm'}`}>
           {t(
             'منصة إعلامية مخصصة لتلاوات وخطب المسجد الحرام المكي الشريف',
             'A media platform dedicated to recitations and sermons from the Sacred Mosque in Makkah'
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center text-foreground/40 text-sm flex flex-col gap-2">
-          <p className="font-arabic">جميع الحقوق محفوظة © {currentYear} صوت الحرم</p>
+          <p className="font-arabic-secondary">جميع الحقوق محفوظة © {currentYear} صوت الحرم</p>
           <p className="font-sans">All rights reserved © {currentYear} Sawtul Haram</p>
         </div>
       </div>
