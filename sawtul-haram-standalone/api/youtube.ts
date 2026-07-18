@@ -29,9 +29,10 @@ export default async function handler(req: any, res: any) {
       .join(",");
 
 
-    // 2. Get details
+
+    // 2. Get video details
     const detailsResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
+      `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails,player`
     );
 
 
@@ -44,45 +45,17 @@ export default async function handler(req: any, res: any) {
 
 
 
-    // 3. Detect Shorts using YouTube's own URL behaviour
-    const checkShort = async (videoId: string) => {
-      try {
-        const response = await fetch(
-          `https://www.youtube.com/shorts/${videoId}`,
-          {
-            method: "HEAD",
-            redirect: "follow",
-          }
-        );
-
-        return response.url.includes("/shorts/");
-      } catch {
-        return false;
-      }
-    };
-
-
-
-    const shortFlags = await Promise.all(
-      detailsData.items.map((video: any) =>
-        checkShort(video.id)
-      )
-    );
-
-
-
-    // 4. Keep only normal videos
-    const videos = detailsData.items
-      .filter((_: any, index: number) => !shortFlags[index])
-      .map((video: any) => ({
-        id: video.id,
-        title: video.snippet.title,
-        thumbnail:
-          video.snippet.thumbnails.high?.url ||
-          video.snippet.thumbnails.medium?.url,
-        publishedAt: video.snippet.publishedAt,
-      }));
-
+    // 3. Return videos for testing
+    const videos = detailsData.items.map((video: any) => ({
+      id: video.id,
+      title: video.snippet.title,
+      thumbnail:
+        video.snippet.thumbnails.high?.url ||
+        video.snippet.thumbnails.medium?.url,
+      publishedAt: video.snippet.publishedAt,
+      duration: video.contentDetails.duration,
+      embed: video.player?.embedHtml,
+    }));
 
 
     return res.status(200).json(videos);
