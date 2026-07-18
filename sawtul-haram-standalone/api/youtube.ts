@@ -43,6 +43,14 @@ export default async function handler(req: any, res: any) {
       return res.status(detailsResponse.status).json(detailsData);
     }
 
+    console.log(
+        detailsData.items.map((video: any) => ({
+            id: video.id,
+            title: video.snippet.title,
+            contentDetails: video.contentDetails,
+            player: video.player,
+        }))
+    );
 
 
     // 3. Return videos for testing
