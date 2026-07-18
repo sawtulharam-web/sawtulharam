@@ -26,10 +26,9 @@ export default async function handler(req: any, res: any) {
       .filter(Boolean)
       .join(',');
 
-
     // 2. Get video details
     const detailsResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
+      `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
     );
 
     const detailsData = await detailsResponse.json();
@@ -38,39 +37,34 @@ export default async function handler(req: any, res: any) {
       return res.status(detailsResponse.status).json(detailsData);
     }
 
-
-    // 3. Filter out Shorts (vertical videos)
-    const videos = detailsData.items
-    .filter((video: any) => {
-
-        const thumbnail =
-            video.snippet.thumbnails.maxres ||
-            video.snippet.thumbnails.standard ||
-            video.snippet.thumbnails.high ||
-            video.snippet.thumbnails.medium ||
-            video.snippet.thumbnails.default;
-        
-        console.log(
-            video.snippet.title,
-            thumbnail.width,
-            thumbnail.height
+    // 3. Check each video against YouTube's own Shorts redirect behavior.
+    // A Short's /shorts/{id} URL stays on /shorts/; a regular video redirects to /watch.
+    const isShort = async (videoId: string): Promise<boolean> => {
+      try {
+        const shortCheck = await fetch(
+          `https://www.youtube.com/shorts/${videoId}`,
+          { method: 'HEAD', redirect: 'follow' }
         );
+        return shortCheck.url.includes('/shorts/');
+      } catch {
+        // If the check itself fails (network hiccup), fall back to duration
+        // so we don't accidentally hide a real video.
+        return false;
+      }
+    };
 
-        if (thumbnail.height > thumbnail.width) {
-            return false;
-        }
+    const flags = await Promise.all(
+      detailsData.items.map((video: any) => isShort(video.id))
+    );
 
-        return true;
-    })
-    .map((video: any) => ({
+    const videos = detailsData.items
+      .filter((_: any, index: number) => !flags[index])
+      .map((video: any) => ({
         id: video.id,
         title: video.snippet.title,
-        thumbnail:
-          video.snippet.thumbnails.high.url,
-        publishedAt:
-          video.snippet.publishedAt,
+        thumbnail: video.snippet.thumbnails.high.url,
+        publishedAt: video.snippet.publishedAt,
       }));
-
 
     return res.status(200).json(videos);
 
