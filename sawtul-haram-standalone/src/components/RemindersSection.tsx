@@ -62,10 +62,10 @@ export default function RemindersSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-14"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic' : 'font-serif'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
             {t('تذكير', 'Reminders')}
           </h2>
-          <p className={`text-muted-foreground mb-6 ${lang === 'ar' ? 'font-arabic text-base' : 'font-sans text-sm'}`}>
+          <p className={`text-muted-foreground mb-6 ${lang === 'ar' ? 'font-arabic-secondary text-base' : 'font-sans text-sm'}`}>
             {t('كلمات وتذكيرات من أئمة الحرم المكي الشريف', "Words and reminders from the imams of Masjid al-Haram")}
           </p>
           <div className="flex items-center justify-center gap-4">
@@ -227,7 +227,7 @@ export default function RemindersSection() {
             </div>
             <div>
               <p className="font-semibold text-foreground text-sm">YouTube</p>
-              <p className="text-muted-foreground text-xs mt-0.5 font-arabic">@صوت_الحرم</p>
+              <p className="text-muted-foreground text-xs mt-0.5 font-arabic-secondary">@صوت_الحرم</p>
             </div>
           </a>
 
