@@ -129,6 +129,7 @@ export default function PrayerTimes() {
                         {t(prayer.ar, prayer.en)}
                     </h3>
                     <div className={`text-2xl font-bold tracking-wider ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
+                      {lang === 'ar' ? time : timeEn}
                     </div>
                   </motion.div>
                 );
