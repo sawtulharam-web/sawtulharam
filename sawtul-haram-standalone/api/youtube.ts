@@ -10,7 +10,8 @@ export default async function handler(req: any, res: any) {
 
     const channelId = "UCKjpCiooBil-40uM0hOi4NQ";
 
-    // Get latest 50 uploads
+    // Get latest 50 uploads so we have enough videos
+    // after filtering out Shorts.
     const searchResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50&type=video`
     );
@@ -26,20 +27,42 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json([]);
     }
 
-    // Get detailed metadata
+    // Get detailed metadata including duration
     const detailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails,statistics`
     );
 
     const detailsData = await detailsResponse.json();
 
-    // Return diagnostic information
+    // Filter out Shorts and return only the latest 8 regular videos.
     const videos = detailsData.items
       .sort(
         (a: any, b: any) =>
           new Date(b.snippet.publishedAt).getTime() -
           new Date(a.snippet.publishedAt).getTime()
       )
+      .filter((video: any) => {
+        const duration = video.contentDetails?.duration || "";
+
+        // Convert ISO 8601 duration to seconds
+        const match = duration.match(
+          /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
+        );
+
+        if (!match) return false;
+
+        const hours = parseInt(match[1] || "0", 10);
+        const minutes = parseInt(match[2] || "0", 10);
+        const seconds = parseInt(match[3] || "0", 10);
+
+        const totalSeconds =
+          hours * 3600 + minutes * 60 + seconds;
+
+        // YouTube Shorts are generally 60 seconds or less.
+        // Keep videos longer than 60 seconds.
+        return totalSeconds > 60;
+      })
+      .slice(0, 8)
       .map((video: any) => ({
         id: video.id,
 
@@ -51,7 +74,9 @@ export default async function handler(req: any, res: any) {
 
         duration: video.contentDetails.duration,
 
-        thumbnail: video.snippet.thumbnails.high?.url,
+        thumbnail:
+          video.snippet.thumbnails.high?.url ||
+          video.snippet.thumbnails.default?.url,
 
         thumbnailWidth:
           video.snippet.thumbnails.high?.width || null,
