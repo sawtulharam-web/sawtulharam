@@ -11,7 +11,7 @@ export default async function handler(req: any, res: any) {
     const channelId = "UCKjpCiooBil-40uM0hOi4NQ";
 
     // ---------------------------------------------------------
-    // 1. Get the latest videos uploaded to the channel
+    // 1. Fetch the latest 50 uploads from the channel
     // ---------------------------------------------------------
     const searchResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50&type=video`
@@ -39,7 +39,7 @@ export default async function handler(req: any, res: any) {
     }
 
     // ---------------------------------------------------------
-    // 2. Get detailed information about those videos
+    // 2. Get detailed information for all fetched videos
     // ---------------------------------------------------------
     const detailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
@@ -54,45 +54,39 @@ export default async function handler(req: any, res: any) {
     const detailsData = await detailsResponse.json();
 
     // ---------------------------------------------------------
-    // 3. Filter out Shorts
+    // 3. Filter out vertical videos / Shorts
     // ---------------------------------------------------------
     const videos = detailsData.items
       .filter((video: any) => {
-        const duration = video.contentDetails?.duration || "";
+        const thumbnails = video.snippet?.thumbnails;
 
-        /*
-         * YouTube Shorts are generally short-form vertical videos.
-         *
-         * We do NOT use thumbnail dimensions here because thumbnails
-         * are not a reliable way to determine whether a video is a Short.
-         *
-         * This first filter removes videos that are 60 seconds or less.
-         *
-         * NOTE:
-         * If your channel contains normal videos shorter than 60 seconds,
-         * we can refine the filtering later using the YouTube Shorts
-         * classification / upload strategy.
-         */
-
-        const match = duration.match(
-          /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
-        );
-
-        if (!match) {
+        if (!thumbnails) {
           return false;
         }
 
-        const hours = parseInt(match[1] || "0", 10);
-        const minutes = parseInt(match[2] || "0", 10);
-        const seconds = parseInt(match[3] || "0", 10);
+        // Use the largest available thumbnail
+        const thumbnail =
+          thumbnails.maxres ||
+          thumbnails.standard ||
+          thumbnails.high ||
+          thumbnails.medium ||
+          thumbnails.default;
 
-        const totalSeconds =
-          hours * 3600 +
-          minutes * 60 +
-          seconds;
+        if (!thumbnail) {
+          return false;
+        }
 
-        // Exclude videos of 60 seconds or less
-        if (totalSeconds <= 60) {
+        /*
+         * Shorts are generally displayed in a vertical format.
+         *
+         * We compare the actual thumbnail dimensions rather than
+         * using video duration, because this channel can have
+         * Shorts longer than one minute.
+         *
+         * If the thumbnail is taller than it is wide,
+         * we treat it as a Short and exclude it.
+         */
+        if (thumbnail.height > thumbnail.width) {
           return false;
         }
 
@@ -100,7 +94,7 @@ export default async function handler(req: any, res: any) {
       })
 
       // ---------------------------------------------------------
-      // 4. Sort newest first
+      // 4. Make sure newest videos come first
       // ---------------------------------------------------------
       .sort(
         (a: any, b: any) =>
@@ -109,27 +103,31 @@ export default async function handler(req: any, res: any) {
       )
 
       // ---------------------------------------------------------
-      // 5. Keep only the latest 10 normal videos
+      // 5. Keep ONLY the latest 8 regular videos
       // ---------------------------------------------------------
-      .slice(0, 10)
+      .slice(0, 8)
 
       // ---------------------------------------------------------
-      // 6. Return only the data needed by Videos.tsx
+      // 6. Return only the data needed by the website
       // ---------------------------------------------------------
-      .map((video: any) => ({
-        id: video.id,
+      .map((video: any) => {
+        const thumbnails = video.snippet.thumbnails;
 
-        title: video.snippet.title,
+        return {
+          id: video.id,
 
-        thumbnail:
-          video.snippet.thumbnails.maxres?.url ||
-          video.snippet.thumbnails.standard?.url ||
-          video.snippet.thumbnails.high?.url ||
-          video.snippet.thumbnails.medium?.url ||
-          video.snippet.thumbnails.default?.url,
+          title: video.snippet.title,
 
-        publishedAt: video.snippet.publishedAt,
-      }));
+          thumbnail:
+            thumbnails.maxres?.url ||
+            thumbnails.standard?.url ||
+            thumbnails.high?.url ||
+            thumbnails.medium?.url ||
+            thumbnails.default?.url,
+
+          publishedAt: video.snippet.publishedAt,
+        };
+      });
 
     return res.status(200).json(videos);
 
