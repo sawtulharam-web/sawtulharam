@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
 import { X, ChevronLeft, ChevronRight, Grid, Calendar, Tag, ChevronDown, ChevronUp } from 'lucide-react';
 import { galleryItems, galleryCategories, GalleryItem } from '../data/galleryData';
+import IslamicPattern from './IslamicPattern';
 
 export default function PhotoGallery() {
   const { t, lang } = useLanguage();
