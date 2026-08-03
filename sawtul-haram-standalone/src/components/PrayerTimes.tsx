@@ -237,7 +237,7 @@ export default function PrayerTimes() {
               <span>
                 {isPrayerTimeNow
                   ? t('🔴 البث المباشر للصلاة الآن', '🔴 Live Prayer Broadcast Now')
-                  : t('مشاهدة البث المباشر للمسجد الحرام 📺', 'Watch Makkah 24/7 Live Stream 📺')}
+                  : t('مشاهدة البث المباشر للمسجد الحرام', 'Watch Makkah 24/7 Live Stream')}
               </span>
               <Play className="w-3.5 h-3.5 fill-current" />
             </button>
