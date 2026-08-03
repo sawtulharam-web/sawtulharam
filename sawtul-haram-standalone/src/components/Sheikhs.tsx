@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, UserCheck } from 'lucide-react';
 import IslamicPattern from './IslamicPattern';
 import ImamModal from './ImamModal';
 import { SHEIKHS } from '../data/sheikhs';
@@ -23,7 +23,7 @@ export default function Sheikhs() {
   return (
     <>
       <section id="sheikhs" className="py-24 bg-[#F5F0E8] relative overflow-hidden">
-        <IslamicPattern className="z-0 text-primary" opacity={0.05} />
+        <IslamicPattern className="z-0 text-primary" opacity={0.06} animate={true} />
 
         <div className="relative z-10">
           {/* Heading */}
@@ -34,16 +34,20 @@ export default function Sheikhs() {
             transition={{ duration: 0.8 }}
             className="text-center mb-14 px-6"
           >
+            <span className="text-primary text-xs md:text-sm font-semibold tracking-wider uppercase mb-2 block flex items-center justify-center gap-2">
+              <UserCheck className="w-4 h-4" />
+              {t('أئمة وخطباء الحرم', 'Imams & Khatibs of Makkah')}
+            </span>
             <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground ${lang === 'ar' ? 'font-arabic-secondary' : 'font-serif'}`}>
-              {t('أئمة الحرم المكي', 'Imams of the Haram')}
+              {t('أئمة الحرم المكي الشريف', 'Imams of the Sacred Mosque')}
             </h2>
             <p className={`text-muted-foreground text-sm mb-6 ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
-              {t('اضغط على أي بطاقة لمزيد من التفاصيل', 'Tap any card for details')}
+              {t('اضغط على أي بطاقة لمزيد من التفاصيل والسيرة الذاتية', 'Tap any card to view biography & recitations')}
             </p>
             <div className="flex items-center justify-center gap-4">
-              <div className="h-[1px] w-12 bg-primary" />
-              <div className="w-3 h-3 rotate-45 bg-primary" />
-              <div className="h-[1px] w-12 bg-primary" />
+              <div className="h-[1px] w-12 bg-primary/40" />
+              <div className="w-2.5 h-2.5 rotate-45 bg-primary" />
+              <div className="h-[1px] w-12 bg-primary/40" />
             </div>
           </motion.div>
 
@@ -52,9 +56,9 @@ export default function Sheikhs() {
             <button
               onClick={() => scrollBy('prev')}
               aria-label="Previous imams"
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/80 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-md backdrop-blur-sm"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-background/90 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-lg backdrop-blur-sm"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
 
             <style>{`.sheikhs-scroll::-webkit-scrollbar{display:none}`}</style>
@@ -80,20 +84,16 @@ export default function Sheikhs() {
                   style={{ scrollSnapAlign: 'start' }}
                   aria-label={lang === 'ar' ? sheikh.nameAr : sheikh.nameEn}
                 >
-                  {/*
-                    Shape: square, top-left + bottom-right curved (diagonal opposite),
-                    top-right + bottom-left remain straight (0 radius).
-                  */}
                   <div
-                    className="w-[272px] h-[340px] bg-card border border-primary/20 flex flex-col items-center justify-center gap-5 p-6 overflow-hidden transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(201,168,76,0.20)] group-hover:-translate-y-1"
+                    className="w-[272px] h-[340px] bg-card border border-primary/20 flex flex-col items-center justify-center gap-5 p-6 overflow-hidden transition-all duration-500 group-hover:shadow-[0_12px_35px_rgba(201,168,76,0.25)] group-hover:-translate-y-2 gold-shimmer gold-border-glow"
                     style={{ borderRadius: '2.5rem 0 2.5rem 0' }}
                   >
                     {/* Circle portrait */}
                     <div
                       className="w-44 h-44 rounded-full overflow-hidden shrink-0 transition-transform duration-500 group-hover:scale-105"
                       style={{
-                        border: '2px solid rgba(201,168,76,0.35)',
-                        boxShadow: '0 0 0 4px rgba(201,168,76,0.10)',
+                        border: '2px solid rgba(201,168,76,0.4)',
+                        boxShadow: '0 0 0 4px rgba(201,168,76,0.12)',
                       }}
                     >
                       <img
@@ -114,7 +114,7 @@ export default function Sheikhs() {
                     </div>
 
                     {/* "More" hint */}
-                    <p className="text-xs text-primary/50 font-sans group-hover:text-primary/80 transition-colors">
+                    <p className="text-xs text-primary/60 font-sans font-semibold group-hover:text-primary transition-colors">
                       {t('اضغط للتفاصيل', 'Tap for details')}
                     </p>
                   </div>
@@ -125,9 +125,9 @@ export default function Sheikhs() {
             <button
               onClick={() => scrollBy('next')}
               aria-label="Next imams"
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/80 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-md backdrop-blur-sm"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-background/90 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-lg backdrop-blur-sm"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
 
