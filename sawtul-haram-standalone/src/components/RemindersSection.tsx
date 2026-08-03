@@ -51,7 +51,7 @@ export default function RemindersSection() {
 
   return (
     <section id="reminders" className="py-24 bg-background relative overflow-hidden">
-      <IslamicPattern opacity={0.04} className="text-primary" />
+      <IslamicPattern opacity={0.05} className="text-primary" animate={true} />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Heading */}
