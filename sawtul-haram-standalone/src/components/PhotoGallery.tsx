@@ -87,8 +87,8 @@ export default function PhotoGallery() {
 
   return (
     <section id="gallery" className="py-24 bg-background relative overflow-hidden">
-      {/* Background Decorative Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#c5a059_1px,transparent_1px)] [background-size:24px_24px]" />
+      {/* Floating Islamic Geometric Watermark */}
+      <IslamicPattern opacity={0.05} className="text-primary" animate={true} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header */}
@@ -330,5 +330,3 @@ export default function PhotoGallery() {
     </section>
   );
 }
-
-
