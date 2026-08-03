@@ -28,6 +28,43 @@ export const galleryItems: GalleryItem[] = [
     dateEn: 'Knowledge Councils at Haram',
   },
 
+      //another lecture - 16 safar 1448 -  «العلم الشرعي وأثره في تحصين الفكر من الانحراف»
+
+
+  {
+    id: 'lecture1a',
+    src: '/gallery/lecture1a.png',
+    category: 'lessons',
+
+    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
+
+    dateAr: '١٦ صفر ١٤٤٨هـ ',
+    dateEn: "16 Safar 1448 AH",
+  },
+  {
+    id: 'lecture1b',
+    src: '/gallery/lecture1b.png',
+    category: 'lessons',
+
+    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
+
+    dateAr: '١٦ صفر ١٤٤٨هـ ',
+    dateEn: "16 Safar 1448 AH",
+  },
+    {
+    id: 'lecture1c',
+    src: '/gallery/lecture1c.png',
+    category: 'lessons',
+
+    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
+
+    dateAr: '١٦ صفر ١٤٤٨هـ ',
+    dateEn: "16 Safar 1448 AH",
+  },
+
   // Imams News & Presidency Meetings
   {
     id: 'imams-1',
@@ -278,4 +315,5 @@ export const galleryItems: GalleryItem[] = [
     dateAr: 'معالم الحرم',
     dateEn: 'Haram Landmark',
   },
+  
 ];
