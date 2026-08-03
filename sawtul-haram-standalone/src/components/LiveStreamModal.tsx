@@ -40,7 +40,7 @@ export default function LiveStreamModal({ isOpen, onClose, isPrayerTimeNow }: Li
                   <h3 className={`text-base md:text-lg font-bold flex items-center gap-2 ${lang === 'ar' ? 'font-arabic-secondary' : 'font-sans'}`}>
                     {isPrayerTimeNow
                       ? t('البث المباشر للصلاة الآن — المسجد الحرام 🔴', 'Live Prayer Broadcast Now — Masjid al-Haram 🔴')
-                      : t('البث المباشر للمسجد الحرام — مكة المكرمة 📺', 'Masjid al-Haram 24/7 Live Stream — Makkah 📺')}
+                      : t('البث المباشر للمسجد الحرام — مكة المكرمة', 'Masjid al-Haram 24/7 Live Stream — Makkah')}
                   </h3>
                   <p className="text-xs text-muted-foreground">
                     {t('قناة القرآن الكريم الفضائية المباشرة من الحرم المكي', 'Official 24/7 Live Stream from the Sacred Mosque')}
