@@ -79,7 +79,7 @@
   --primary: 43 45% 54%; /* Metallic gold #C9A84C */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 104 23% 33%; /* Muted green #4A6741 */
+  --secondary: 162 50% 15%; /* Royal Deep Emerald #0c3b2e */
   --secondary-foreground: 0 0% 100%;
   
   --muted: 40 20% 90%;
@@ -103,39 +103,7 @@
   --sidebar-accent-foreground: 26 34% 13%;
   --sidebar-ring: 43 45% 54%;
 
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: 42 35% 95%; 
-  --foreground: 26 34% 13%; 
-  --border: 44 54% 82%; 
-  --card: 42 35% 97%; 
-  --card-foreground: 26 34% 13%; 
-  --card-border: 43 45% 54%; 
-  --popover: 42 35% 97%;
-  --popover-foreground: 26 34% 13%;
-  --popover-border: 43 45% 54%;
-  --primary: 43 45% 54%; 
-  --primary-foreground: 0 0% 100%;
-  --secondary: 104 23% 33%; 
-  --secondary-foreground: 0 0% 100%;
-  --muted: 40 20% 90%;
-  --muted-foreground: 26 20% 40%;
-  --accent: 43 45% 54%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --input: 44 54% 82%;
-  --ring: 43 45% 54%;
-  --sidebar: 42 35% 95%;
-  --sidebar-foreground: 26 34% 13%;
-  --sidebar-border: 44 54% 82%;
-  --sidebar-primary: 43 45% 54%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 40 20% 90%;
-  --sidebar-accent-foreground: 26 34% 13%;
-  --sidebar-ring: 43 45% 54%;
+  --radius: 0.75rem;
 }
 
 @layer base {
@@ -148,7 +116,7 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary;
   }
 
   :dir(rtl) {
@@ -156,17 +124,61 @@
   }
 }
 
-.font-arabic {
-  font-family: var(--font-arabic);
+/* Custom Gold Shimmer Light Trails */
+.gold-shimmer {
+  position: relative;
+  overflow: hidden;
 }
 
-.font-arabic-secondary {
-  font-family: var(--font-arabic-secondary);
+.gold-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(201, 168, 76, 0.25) 50%,
+    transparent 70%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.8s ease-in-out;
 }
 
-/* Hero logo entrance — plain CSS animation (not Framer Motion) so the
-   element never gets promoted to an isolated compositing layer, which
-   would otherwise break `mix-blend-mode: multiply` and show a white box. */
+.gold-shimmer:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+/* Gold Border Glow Utility */
+.gold-border-glow {
+  transition: all 0.4s ease-in-out;
+}
+
+.gold-border-glow:hover {
+  border-color: rgba(201, 168, 76, 0.8);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
+}
+
+/* Live Pulse Ring */
+.live-pulse {
+  animation: live-pulse-anim 2s infinite;
+}
+
+@keyframes live-pulse-anim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(225, 29, 72, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(225, 29, 72, 0);
+  }
+}
+
+/* Hero logo entrance */
 .hero-logo {
   animation: hero-logo-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
