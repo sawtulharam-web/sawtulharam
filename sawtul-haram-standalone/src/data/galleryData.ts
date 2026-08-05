@@ -17,22 +17,9 @@ export const galleryCategories = [
 ] as const;
 
 export const galleryItems: GalleryItem[] = [
-  // Lesson by Sheikh Yasser Al-Dossary
+  // Lessons and Lectures
   {
-    id: 'lesson-1',
-    src: '/gallery/gallery_01.jpg',
-    category: 'lessons',
-    captionAr: 'درس فضيلة الشيخ د. ياسر الدوسري في رحاب المسجد الحرام',
-    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram',
-    dateAr: 'مجالس العلم بالحرم',
-    dateEn: 'Knowledge Councils at Haram',
-  },
-
-      //another lecture - 16 safar 1448 -  «العلم الشرعي وأثره في تحصين الفكر من الانحراف»
-
-
-  {
-    id: 'lecture1a',
+    id: 'lecture1a', //lecture - 16 safar 1448 -  «العلم الشرعي وأثره في تحصين الفكر من الانحراف»
     src: '/gallery/lecture1a.png',
     category: 'lessons',
 
@@ -64,6 +51,55 @@ export const galleryItems: GalleryItem[] = [
     dateAr: '١٦ صفر ١٤٤٨هـ ',
     dateEn: "16 Safar 1448 AH",
   },
+
+  //----
+
+  {  // old lecture
+    id: 'lesson-1',
+    src: '/gallery/gallery_01.jpg',
+    category: 'lessons',
+    captionAr: 'درس فضيلة الشيخ د. ياسر الدوسري في رحاب المسجد الحرام',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram',
+    dateAr: 'مجالس العلم بالحرم',
+    dateEn: 'Knowledge Councils at Haram',
+  },
+
+  //---
+
+  {  //Hajj Lecture 1447 - درس فضيلة الشيخ ياسر الدوسري - بعنوان «تفسير آيات الحج» - 04 ذوالحجۃ 1447هـ
+
+    id: 'LHajj_1',
+    src: '/gallery/LHajj_1.png',
+    category: 'lessons',
+    captionAr:  '«درس فضيلة الشيخ ياسر الدوسري - بعنوان «تفسير آيات الحج',
+    captionEn: 'Lesson by Sheikh Yasser Al-Dossary - "Interpretation of Hajj Verses"',
+    dateAr: '04 ذوالحجۃ 1447هـ',
+    dateEn: '04 Dhu al-Hijjah 1447 AH',
+  },
+
+  //---
+
+  {  //Al=Qassim Lecture 1447 -  - «محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري
+    id: 'LQassim_1',
+    src: '/gallery/LQassim_1.jpeg',
+    category: 'lessons',
+    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري',
+    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Qassim University - "The Sacred Method in Strengthening Intellectual Security"',
+    dateAr: '21 شعبان 1447هـ',
+    dateEn: '21 Shaban 1447 AH',
+  },
+    {
+    id: 'LQassim_2',
+    src: '/gallery/LQassim_2.jpeg',
+    category: 'lessons',
+    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري',
+    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Qassim University - "The Sacred Method in Strengthening Intellectual Security"',
+    dateAr: '21 شعبان 1447هـ',
+    dateEn: '21 Shaban 1447 AH',
+  },
+  
+  
+//---------------------------------------------------------
 
   // Imams News & Presidency Meetings
   {
@@ -139,7 +175,9 @@ export const galleryItems: GalleryItem[] = [
     dateEn: "Imams' News",
   },
 
-  // Sheikh Yasser Al-Dossary Graduation Ceremonies
+  //-----------------------------------------------------
+
+  // Ceremonies and Events
   {
     id: 'grad-1',
     src: '/gallery/gallery_10.jpg',
