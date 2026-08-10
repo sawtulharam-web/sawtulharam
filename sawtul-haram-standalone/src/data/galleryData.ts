@@ -18,6 +18,17 @@ export const galleryCategories = [
 
 export const galleryItems: GalleryItem[] = [
   // Lessons and Lectures
+
+  {  // madinah lecture - عنوان: «العلم النافع بين التحصيل والتزكية» - ٢٤ صفر ١٤٤٨ه
+    id: 'lecture_2a',
+    src: '/gallery/lecture_2a.png',
+    category: 'lessons',
+    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في المسجد النبوي - «العلم النافع بين التحصيل والتزكية',
+    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Masjid al-Nabawi - "Beneficial Knowledge: Between Acquisition and Purification"',
+    dateAr: '٢٤ صفر ١٤٤٨هـ',
+    dateEn: '24 Safar 1448 AH',
+  },
+
   {
     id: 'lecture1a', //lecture - 16 safar 1448 -  «العلم الشرعي وأثره في تحصين الفكر من الانحراف»
     src: '/gallery/lecture1a.png',
@@ -178,6 +189,65 @@ export const galleryItems: GalleryItem[] = [
   //-----------------------------------------------------
 
   // Ceremonies and Events
+  {  // sheikh yasser - تكريم الشيخ الدكتور ياسر بن راشد الدوسري لعثمان مشعل الحداد | ٢١ صفر ١٤٤٨هـ ⁩
+    id: 'ceremony_1a',
+    src: '/gallery/ceremony_1a.jpg',
+    category: 'ceremonies',
+    captionAr: 'تكريم الشيخ الدكتور ياسر بن راشد الدوسري لعثمان مشعل الحداد',
+    captionEn: 'Honoring Sheikh Dr. Yasser Al-Dossary for his service to the Ummah',
+    dateAr: '٢١ صفر ١٤٤٨هـ',
+    dateEn: '21 Safar 1448 AH',
+  },
+  { 
+    id: 'ceremony_1b',
+    src: '/gallery/ceremony_1b.jpg',
+    category: 'ceremonies',
+    captionAr: 'تكريم الشيخ الدكتور ياسر بن راشد الدوسري لعثمان مشعل الحداد',
+    captionEn: 'Honoring Sheikh Dr. Yasser Al-Dossary for his service to the Ummah',
+    dateAr: '٢١ صفر ١٤٤٨هـ',
+    dateEn: '21 Safar 1448 AH',
+  },
+  { 
+    id: 'ceremony_1c',
+    src: '/gallery/ceremony_1c.jpg',
+    category: 'ceremonies',
+    captionAr: 'تكريم الشيخ الدكتور ياسر بن راشد الدوسري لعثمان مشعل الحداد',
+    captionEn: 'Honoring Sheikh Dr. Yasser Al-Dossary for his service to the Ummah',
+    dateAr: '٢١ صفر ١٤٤٨هـ',
+    dateEn: '21 Safar 1448 AH',
+  },
+
+  //----
+  {  // sheikh waleed - استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد | ٢٣ صفر ١٤٤٨هـ 
+  id: 'ceremony_2a',
+  src: '/gallery/ceremony_2a.jpg',
+  category: 'ceremonies',
+  captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
+  captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
+  dateAr: '٢٣ صفر ١٤٤٨هـ',
+  dateEn: '23 Safar 1448 AH',
+  },
+
+  { 
+  id: 'ceremony_2b',
+  src: '/gallery/ceremony_2b.jpg',
+  category: 'ceremonies',
+  captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
+  captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
+  dateAr: '٢٣ صفر ١٤٤٨هـ',
+  dateEn: '23 Safar 1448 AH',
+  },
+
+  { 
+  id: 'ceremony_2c',
+  src: '/gallery/ceremony_2c.jpg',
+  category: 'ceremonies',
+  captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
+  captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
+  dateAr: '٢٣ صفر ١٤٤٨هـ',
+  dateEn: '23 Safar 1448 AH',
+  },
+  //--------
   {
     id: 'grad-1',
     src: '/gallery/gallery_10.jpg',
@@ -243,6 +313,7 @@ export const galleryItems: GalleryItem[] = [
   },
 
   // Annual Closing Ceremony of Religious Affairs Presidency
+
   {
     id: 'ceremony-1',
     src: '/gallery/gallery_17.jpg',
@@ -306,6 +377,8 @@ export const galleryItems: GalleryItem[] = [
     dateAr: 'عام ١٤٤٧هـ',
     dateEn: '1447 AH',
   },
+
+//-----------------------------------------------------
 
   // Landmarks
   {
