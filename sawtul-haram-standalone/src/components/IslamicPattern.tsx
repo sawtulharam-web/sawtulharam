@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function IslamicPattern({
   className = '',
-  opacity = 0.1,
+  opacity = 0.04,
   animate = false,
 }: {
   className?: string;
