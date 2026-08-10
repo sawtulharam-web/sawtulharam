@@ -320,3 +320,4 @@ Sheikh Dr. Usama bin Abdullah Khayyat is an Imam and Preacher of Masjid al-Haram
 export const SHEIKH_MAP: Record<string, Sheikh> = Object.fromEntries(
   SHEIKHS.map((s) => [s.key, s])
 );
+
