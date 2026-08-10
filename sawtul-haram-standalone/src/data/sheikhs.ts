@@ -8,6 +8,7 @@ import sheikhAbdullah from '@assets/الشيخ_عبد_الله_بن_عواد_ا�
 import sheikhBaleelah from '@assets/الشيخ_بندر_بن_عبد_العزيز_بليلة_1783531655012.png';
 import sheikhBadr     from '@assets/الشيخ_بدر_بن_محمد_التركي_1783531655008.png';
 import sheikhWaleed   from '@assets/الشيخ_الوليد_بن_خالد_الشمسان_1783531655011.png';
+import sheikhUsama   from '@assets/الشیخ_أسامة_بن_عبداللہ_خياط.png';
 
 export interface Sheikh {
   key: string;
@@ -297,6 +298,21 @@ He was assigned as an Imam of Masjid al-Haram in 1445 AH and became an official 
 Sheikh Al-Waleed Al-Shamsan combines academic scholarship with deep dedication to the Qur'an and its recitations.
 `,
     image: sheikhWaleed,
+  },
+  {
+    key: 'usama',
+    nameAr: 'فضيلة الشيخ الدكتور أسامة بن عبدالله خياط',
+    nameEn: 'His Eminence Sheikh Dr. Usama bin Abdullah Khayyat',
+    titleAr: 'إمام وخطيب المسجد الحرام',
+    titleEn: 'Imam & Preacher of Masjid al-Haram',
+    bioAr: `
+فضيلة الشيخ الدكتور أسامة بن عبدالله خياط، إمام وخطيب المسجد الحرام.
+
+`,
+    bioEn: `
+Sheikh Dr. Usama bin Abdullah Khayyat is an Imam and Preacher of Masjid al-Haram.
+`,
+    image: sheikhUsama,
   },
 ];
 
