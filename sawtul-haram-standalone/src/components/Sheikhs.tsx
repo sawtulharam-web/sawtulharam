@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
-import { ChevronLeft, ChevronRight, UserCheck } from 'lucide-react';
+import { ChevronLeft, ChevronRight, UserCheck, Film, Clapperboard } from 'lucide-react';
 import IslamicPattern from './IslamicPattern';
 import ImamModal from './ImamModal';
 import { SHEIKHS } from '../data/sheikhs';
@@ -73,7 +73,7 @@ export default function Sheikhs() {
               }}
             >
               {SHEIKHS.map((sheikh, index) => (
-                <motion.button
+                <motion.div
                   key={sheikh.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -85,9 +85,33 @@ export default function Sheikhs() {
                   aria-label={lang === 'ar' ? sheikh.nameAr : sheikh.nameEn}
                 >
                   <div
-                    className="w-[272px] h-[340px] bg-card border border-primary/20 flex flex-col items-center justify-center gap-5 p-6 overflow-hidden transition-all duration-500 group-hover:shadow-[0_12px_35px_rgba(201,168,76,0.25)] group-hover:-translate-y-2 gold-shimmer gold-border-glow"
+                    className="w-[272px] h-[340px] relative bg-card border border-primary/20 flex flex-col items-center justify-center gap-5 p-6 overflow-hidden transition-all duration-500 group-hover:shadow-[0_12px_35px_rgba(201,168,76,0.25)] group-hover:-translate-y-2 gold-shimmer gold-border-glow"
                     style={{ borderRadius: '2.5rem 0 2.5rem 0' }}
                   >
+                    {/* YouTube Links */}
+                    <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                      <a
+                        href={sheikh.youtubeVideos || '#'}
+                        target={sheikh.youtubeVideos ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        onClick={(e) => { e.stopPropagation(); if (!sheikh.youtubeVideos) e.preventDefault(); }}
+                        title={t('قائمة الفيديوهات', 'Videos Playlist')}
+                        className="w-8 h-8 rounded-full bg-background/60 backdrop-blur border border-primary/20 flex items-center justify-center text-primary/70 hover:bg-primary hover:text-white hover:scale-110 hover:border-primary transition-all shadow-sm"
+                      >
+                        <Clapperboard className="w-4 h-4" />
+                      </a>
+                      <a
+                        href={sheikh.youtubeShorts || '#'}
+                        target={sheikh.youtubeShorts ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        onClick={(e) => { e.stopPropagation(); if (!sheikh.youtubeShorts) e.preventDefault(); }}
+                        title={t('قائمة المقاطع القصيرة', 'Shorts Playlist')}
+                        className="w-8 h-8 rounded-full bg-background/60 backdrop-blur border border-primary/20 flex items-center justify-center text-primary/70 hover:bg-primary hover:text-white hover:scale-110 hover:border-primary transition-all shadow-sm"
+                      >
+                        <Film className="w-4 h-4" />
+                      </a>
+                    </div>
+
                     {/* Circle portrait */}
                     <div
                       className="w-44 h-44 rounded-full overflow-hidden shrink-0 transition-transform duration-500 group-hover:scale-105"
@@ -118,7 +142,7 @@ export default function Sheikhs() {
                       {t('اضغط للتفاصيل', 'Tap for details')}
                     </p>
                   </div>
-                </motion.button>
+                </motion.div>
               ))}
             </div>
 
