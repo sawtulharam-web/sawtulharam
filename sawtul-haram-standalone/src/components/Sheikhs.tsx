@@ -23,7 +23,7 @@ export default function Sheikhs() {
   return (
     <>
       <section id="sheikhs" className="py-24 bg-[#F5F0E8] relative overflow-hidden">
-        <IslamicPattern className="z-0 text-primary" opacity={0.06} animate={true} />
+        <IslamicPattern className="z-0 text-primary" opacity={0.14} animate={true} />
 
         <div className="relative z-10">
           {/* Heading */}
