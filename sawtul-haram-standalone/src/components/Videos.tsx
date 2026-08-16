@@ -48,7 +48,7 @@ export default function Videos() {
 
   return (
     <section id="videos" className="py-24 bg-[#f3efe6] relative border-y border-border">
-      <IslamicPattern opacity={0.03} />
+      <IslamicPattern opacity={0.11} />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
