@@ -13,7 +13,7 @@ export default function Hero() {
       className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-[#F5F0E8]"
     >
       {/* Islamic geometric pattern background */}
-      <IslamicPattern className="z-0 text-[#C9A84C]" opacity={0.07} />
+      <IslamicPattern className="z-0 text-[#C9A84C]" opacity={0.15} />
 
       {/* Soft vignette */}
       <div
