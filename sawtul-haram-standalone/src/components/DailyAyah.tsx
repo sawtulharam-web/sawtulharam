@@ -155,7 +155,7 @@ export default function DailyAyah() {
 
   return (
     <section id="ayah" className="py-24 bg-[#2D2016] text-[#F9F5ED] relative border-y border-primary/20 overflow-hidden">
-      <IslamicPattern opacity={0.08} className="text-primary" animate={true} />
+      <IslamicPattern opacity={0.12} className="text-primary" animate={true} />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
