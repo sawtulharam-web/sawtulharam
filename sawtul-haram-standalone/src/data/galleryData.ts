@@ -1,7 +1,7 @@
 export interface GalleryItem {
   id: string;
   src: string;
-  category: 'imams' | 'ceremonies' | 'lessons' | 'landmarks';
+  category: 'imams' | 'ceremonies' | 'lessons' | 'landmarks' | 'ramadan';
   captionAr: string;
   captionEn: string;
   dateAr?: string;
@@ -10,6 +10,7 @@ export interface GalleryItem {
 
 export const galleryCategories = [
   { id: 'all', nameAr: 'الكل', nameEn: 'All Photos' },
+  { id: 'ramadan', nameAr: 'رمضان', nameEn: 'Ramadan' },
   { id: 'imams', nameAr: 'أخبار الأئمة', nameEn: "Imams' News" },
   { id: 'ceremonies', nameAr: 'الحفلات والفعاليات', nameEn: 'Ceremonies & Events' },
   { id: 'lessons', nameAr: 'دروس الحرم', nameEn: 'Haram Lessons' },
@@ -17,7 +18,104 @@ export const galleryCategories = [
 ] as const;
 
 export const galleryItems: GalleryItem[] = [
-  // Lessons and Lectures
+  // IMPORTANT: 
+  // This array is now ordered chronologically (newest at the top).
+  // Whenever you add a new image, simply place it at the VERY TOP of this array,
+  // directly under this comment, regardless of its category.
+  // This ensures the newest image always appears first in the "All" (الكل) tab.
+  // The category filters will automatically handle grouping them.
+
+  //------------------------------------------------------------------------------------------------------------
+  // ALWAYS ADD IMAGE ON TOP - NEW IMAGE ON TOP
+
+  //---
+
+  { // حضور الشيخين ياسر الدوسري ومحمد برهجي في اللقاءات العلمية والثقافية لضيوف برنامج خادم الحرمين للعمرة والزيارة.
+    id: 'ceremony_4a', // sheikh yasser
+    src: '/gallery/ceremony_4a.jpg',
+    category: 'ceremonies',
+    captionAr: 'حضور الشيخين ياسر الدوسري ومحمد برهجي في اللقاءات العلمية والثقافية لضيوف برنامج خادم الحرمين للعمرة والزيارة.',
+    captionEn: 'Sheikh Yasser Al-Dossary and Sheikh Muhammad Barhaji attend the educational and cultural gatherings for guests of the Custodian of the Two Holy Mosques’ Umrah and Visit Program.',
+    dateAr: '30 صفر 1448هـ',  // CORRECT DATE FORMAT
+    dateEn: '30 Safar 1448 AH',
+  },
+  {
+    id: 'ceremony_4b',
+    src: '/gallery/ceremony_4b.jpg',
+    category: 'ceremonies',
+    captionAr: 'حضور الشيخين ياسر الدوسري ومحمد برهجي في اللقاءات العلمية والثقافية لضيوف برنامج خادم الحرمين للعمرة والزيارة.',
+    captionEn: 'Sheikh Yasser Al-Dossary and Sheikh Muhammad Barhaji attend the educational and cultural gatherings for guests of the Custodian of the Two Holy Mosques’ Umrah and Visit Program.',
+    dateAr: '30 صفر 1448هـ',
+    dateEn: '30 Safar 1448 AH',
+  },
+
+  //-------
+
+  { // معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع. - صفر 1448ه
+    id: 'ceremony_3a',
+    src: '/gallery/ceremony_3b.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+  {
+    id: 'ceremony_3b',
+    src: '/gallery/ceremony_3b.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+  {
+    id: 'ceremony_3c',
+    src: '/gallery/ceremony_3c.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+  {
+    id: 'ceremony_3d',
+    src: '/gallery/ceremony_3d.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+  { 
+    id: 'ceremony_3e',
+    src: '/gallery/ceremony_3e.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+  { 
+    id: 'ceremony_3f',
+    src: '/gallery/ceremony_3f.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+  { 
+    id: 'ceremony_3g',
+    src: '/gallery/ceremony_3g.jpeg',
+    category: 'ceremonies',
+    captionAr: 'معالي الشيخ أ.د. عبدالرحمن السديس يشارك في جائزة «رواد العمل التطوعي» ببني حسن، مؤكدًا أن التطوع قيمة شرعية وخدمة للمجتمع.',
+    captionEn: 'His Excellency Sheikh Prof. Dr. Abdulrahman Al-Sudais participates in the “Pioneers of Volunteer Work” Award in Bani Hassan, affirming that volunteering is a religious value and a service to society.',
+    dateAr: ' صفر 1448 هـ',
+    dateEn: 'Safar 1448 AH',
+  },
+
+  //----
 
   {  // madinah lecture - عنوان: «العلم النافع بين التحصيل والتزكية» - ٢٤ صفر ١٤٤٨ه
     id: 'lecture_2a',
@@ -28,167 +126,33 @@ export const galleryItems: GalleryItem[] = [
     dateAr: '٢٤ صفر ١٤٤٨هـ',
     dateEn: '24 Safar 1448 AH',
   },
-
-  {
-    id: 'lecture1a', //lecture - 16 safar 1448 -  «العلم الشرعي وأثره في تحصين الفكر من الانحراف»
-    src: '/gallery/lecture1a.png',
-    category: 'lessons',
-
-    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
-    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
-
-    dateAr: '١٦ صفر ١٤٤٨هـ ',
-    dateEn: "16 Safar 1448 AH",
+  {  // sheikh waleed - استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد | ٢٣ صفر ١٤٤٨هـ 
+    id: 'ceremony_2a',
+    src: '/gallery/ceremony_2a.jpg',
+    category: 'ceremonies',
+    captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
+    captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
+    dateAr: '٢٣ صفر ١٤٤٨هـ',
+    dateEn: '23 Safar 1448 AH',
   },
-  {
-    id: 'lecture1b',
-    src: '/gallery/lecture1b.png',
-    category: 'lessons',
-
-    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
-    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
-
-    dateAr: '١٦ صفر ١٤٤٨هـ ',
-    dateEn: "16 Safar 1448 AH",
+  { 
+    id: 'ceremony_2b',
+    src: '/gallery/ceremony_2b.jpg',
+    category: 'ceremonies',
+    captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
+    captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
+    dateAr: '٢٣ صفر ١٤٤٨هـ',
+    dateEn: '23 Safar 1448 AH',
   },
-    {
-    id: 'lecture1c',
-    src: '/gallery/lecture1c.png',
-    category: 'lessons',
-
-    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
-    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
-
-    dateAr: '١٦ صفر ١٤٤٨هـ ',
-    dateEn: "16 Safar 1448 AH",
+  { 
+    id: 'ceremony_2c',
+    src: '/gallery/ceremony_2c.jpg',
+    category: 'ceremonies',
+    captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
+    captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
+    dateAr: '٢٣ صفر ١٤٤٨هـ',
+    dateEn: '23 Safar 1448 AH',
   },
-
-  //----
-
-  {  // old lecture
-    id: 'lesson-1',
-    src: '/gallery/gallery_01.jpg',
-    category: 'lessons',
-    captionAr: 'درس فضيلة الشيخ د. ياسر الدوسري في رحاب المسجد الحرام',
-    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram',
-    dateAr: 'مجالس العلم بالحرم',
-    dateEn: 'Knowledge Councils at Haram',
-  },
-
-  //---
-
-  {  //Hajj Lecture 1447 - درس فضيلة الشيخ ياسر الدوسري - بعنوان «تفسير آيات الحج» - 04 ذوالحجۃ 1447هـ
-
-    id: 'LHajj_1',
-    src: '/gallery/LHajj_1.png',
-    category: 'lessons',
-    captionAr:  '«درس فضيلة الشيخ ياسر الدوسري - بعنوان «تفسير آيات الحج',
-    captionEn: 'Lesson by Sheikh Yasser Al-Dossary - "Interpretation of Hajj Verses"',
-    dateAr: '04 ذوالحجۃ 1447هـ',
-    dateEn: '04 Dhu al-Hijjah 1447 AH',
-  },
-
-  //---
-
-  {  //Al=Qassim Lecture 1447 -  - «محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري
-    id: 'LQassim_1',
-    src: '/gallery/LQassim_1.jpeg',
-    category: 'lessons',
-    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري',
-    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Qassim University - "The Sacred Method in Strengthening Intellectual Security"',
-    dateAr: '21 شعبان 1447هـ',
-    dateEn: '21 Shaban 1447 AH',
-  },
-    {
-    id: 'LQassim_2',
-    src: '/gallery/LQassim_2.jpeg',
-    category: 'lessons',
-    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري',
-    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Qassim University - "The Sacred Method in Strengthening Intellectual Security"',
-    dateAr: '21 شعبان 1447هـ',
-    dateEn: '21 Shaban 1447 AH',
-  },
-  
-  
-//---------------------------------------------------------
-
-  // Imams News & Presidency Meetings
-  {
-    id: 'imams-1',
-    src: '/gallery/gallery_04.jpg',
-    category: 'imams',
-    captionAr: 'معالي الشيخ د. عبد الرحمن السديس والشيخ د. الوليد الشمسان بالمسجد الحرام',
-    captionEn: 'H.E. Sheikh Dr. Abdul Rahman Al-Sudais & Sheikh Dr. Al-Waleed Al-Shamsan at Masjid al-Haram',
-    dateAr: 'رئاسة الشؤون الدينية',
-    dateEn: 'Presidency of Religious Affairs',
-  },
-  {
-    id: 'imams-2',
-    src: '/gallery/gallery_02.jpg',
-    category: 'imams',
-    captionAr: 'معالي رئيس الشؤون الدينية يشيد بنجاح الخطة التشغيلية للحج خلال لقائه بالقيادات',
-    captionEn: 'H.E. President of Religious Affairs praises the Hajj operational plan success during leadership meeting',
-    dateAr: 'موسم الحج',
-    dateEn: 'Hajj Season',
-  },
-  {
-    id: 'imams-3',
-    src: '/gallery/gallery_03.jpg',
-    category: 'imams',
-    captionAr: 'جانب من اللقاء القيادي لرئاسة الشؤون الدينية بالمسجد الحرام',
-    captionEn: 'Leadership gathering at the Presidency of Religious Affairs',
-    dateAr: 'رئاسة الشؤون الدينية',
-    dateEn: 'Presidency of Religious Affairs',
-  },
-  {
-    id: 'imams-4',
-    src: '/gallery/gallery_05.jpg',
-    category: 'imams',
-    captionAr: 'لقاء كبار أئمة المسجد الحرام — حفظهم الله',
-    captionEn: 'Gathering of the Imams of Masjid al-Haram',
-    dateAr: 'أئمة الحرم المكي',
-    dateEn: 'Imams of Makkah',
-  },
-  {
-    id: 'imams-5',
-    src: '/gallery/gallery_06.jpg',
-    category: 'imams',
-    captionAr: 'معالي رئيس الشؤون الدينية مع أئمة المسجد الحرام',
-    captionEn: 'H.E. President of Religious Affairs with the Imams of the Sacred Mosque',
-    dateAr: 'أخبار الأئمة',
-    dateEn: "Imams' News",
-  },
-  {
-    id: 'imams-6',
-    src: '/gallery/gallery_07.jpg',
-    category: 'imams',
-    captionAr: 'فضيلة الشيخ د. الوليد الشمسان برفقة أئمة المسجد الحرام',
-    captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan with Imams of Masjid al-Haram',
-    dateAr: 'أئمة الحرم المكي',
-    dateEn: 'Imams of Makkah',
-  },
-  {
-    id: 'imams-7',
-    src: '/gallery/gallery_08.jpg',
-    category: 'imams',
-    captionAr: 'لقطة تجمع أئمة المسجد الحرام بالرئاسة العامة للشؤون الدينية',
-    captionEn: 'Group photo of the Imams at the General Presidency of Religious Affairs',
-    dateAr: 'رئاسة الشؤون الدينية',
-    dateEn: 'Presidency of Religious Affairs',
-  },
-  {
-    id: 'imams-8',
-    src: '/gallery/gallery_09.jpg',
-    category: 'imams',
-    captionAr: 'جانب من اللقاءات الأخوية لأئمة وعلماء المسجد الحرام',
-    captionEn: 'Brotherly gathering of Imams and scholars of the Grand Mosque',
-    dateAr: 'أخبار الأئمة',
-    dateEn: "Imams' News",
-  },
-
-  //-----------------------------------------------------
-
-  // Ceremonies and Events
   {  // sheikh yasser - تكريم الشيخ الدكتور ياسر بن راشد الدوسري لعثمان مشعل الحداد | ٢١ صفر ١٤٤٨هـ ⁩
     id: 'ceremony_1a',
     src: '/gallery/ceremony_1a.jpg',
@@ -216,38 +180,51 @@ export const galleryItems: GalleryItem[] = [
     dateAr: '٢١ صفر ١٤٤٨هـ',
     dateEn: '21 Safar 1448 AH',
   },
-
-  //----
-  {  // sheikh waleed - استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد | ٢٣ صفر ١٤٤٨هـ 
-  id: 'ceremony_2a',
-  src: '/gallery/ceremony_2a.jpg',
-  category: 'ceremonies',
-  captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
-  captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
-  dateAr: '٢٣ صفر ١٤٤٨هـ',
-  dateEn: '23 Safar 1448 AH',
+  {
+    id: 'lecture1a', //lecture - 16 safar 1448 -  «العلم الشرعي وأثره في تحصين الفكر من الانحراف»
+    src: '/gallery/lecture1a.png',
+    category: 'lessons',
+    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
+    dateAr: '١٦ صفر ١٤٤٨هـ ',
+    dateEn: "16 Safar 1448 AH",
   },
-
-  { 
-  id: 'ceremony_2b',
-  src: '/gallery/ceremony_2b.jpg',
-  category: 'ceremonies',
-  captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
-  captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
-  dateAr: '٢٣ صفر ١٤٤٨هـ',
-  dateEn: '23 Safar 1448 AH',
+  {
+    id: 'lecture1b',
+    src: '/gallery/lecture1b.png',
+    category: 'lessons',
+    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
+    dateAr: '١٦ صفر ١٤٤٨هـ ',
+    dateEn: "16 Safar 1448 AH",
   },
-
-  { 
-  id: 'ceremony_2c',
-  src: '/gallery/ceremony_2c.jpg',
-  category: 'ceremonies',
-  captionAr: 'استقبال الشيخ الدكتور الوليد الشمسان وفد مؤسسة موهبة وعددًا من الطلاب المسلمين المشاركين في الأولمبياد',
-  captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan receives the Mawhiba delegation and participating Muslim students',
-  dateAr: '٢٣ صفر ١٤٤٨هـ',
-  dateEn: '23 Safar 1448 AH',
+  {
+    id: 'lecture1c',
+    src: '/gallery/lecture1c.png',
+    category: 'lessons',
+    captionAr: '«درس فضيلة الشيخ د. ياسر الدوسري في المسجد الحرام - «العلم الشرعي وأثره في تحصين الفكر من الانحراف»',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram - "The Sacred Science and Its Impact on Strengthening the Mind from Deviation"',
+    dateAr: '١٦ صفر ١٤٤٨هـ ',
+    dateEn: "16 Safar 1448 AH",
   },
-  //--------
+  {  //Al=Qassim Lecture 1447 -  - «محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري
+    id: 'LQassim_1',
+    src: '/gallery/LQassim_1.jpeg',
+    category: 'lessons',
+    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري',
+    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Qassim University - "The Sacred Method in Strengthening Intellectual Security"',
+    dateAr: '21 شعبان 1447هـ',
+    dateEn: '21 Shaban 1447 AH',
+  },
+  {
+    id: 'LQassim_2',
+    src: '/gallery/LQassim_2.jpeg',
+    category: 'lessons',
+    captionAr:  '«محاضرة لفضيلة الشيخ ياسر الدوسري في جامعة القصيم - «المنهج الشرعي في تأصيل الأمن الفكري',
+    captionEn: 'Lecture by Sheikh Yasser Al-Dossary in Qassim University - "The Sacred Method in Strengthening Intellectual Security"',
+    dateAr: '21 شعبان 1447هـ',
+    dateEn: '21 Shaban 1447 AH',
+  },
   {
     id: 'grad-1',
     src: '/gallery/gallery_10.jpg',
@@ -311,9 +288,15 @@ export const galleryItems: GalleryItem[] = [
     dateAr: '٢٣ ذو الحجة ١٤٤٧هـ',
     dateEn: '23 Dhu al-Hijjah 1447 AH',
   },
-
-  // Annual Closing Ceremony of Religious Affairs Presidency
-
+  {  //Hajj Lecture 1447 - درس فضيلة الشيخ ياسر الدوسري - بعنوان «تفسير آيات الحج» - 04 ذوالحجۃ 1447هـ
+    id: 'LHajj_1',
+    src: '/gallery/LHajj_1.png',
+    category: 'lessons',
+    captionAr:  '«درس فضيلة الشيخ ياسر الدوسري - بعنوان «تفسير آيات الحج',
+    captionEn: 'Lesson by Sheikh Yasser Al-Dossary - "Interpretation of Hajj Verses"',
+    dateAr: '04 ذوالحجۃ 1447هـ',
+    dateEn: '04 Dhu al-Hijjah 1447 AH',
+  },
   {
     id: 'ceremony-1',
     src: '/gallery/gallery_17.jpg',
@@ -377,10 +360,146 @@ export const galleryItems: GalleryItem[] = [
     dateAr: 'عام ١٤٤٧هـ',
     dateEn: '1447 AH',
   },
+  
+  //------------
 
-//-----------------------------------------------------
+  { // ramadan 1447 - رمضان 1447هـ 
+    id: 'ramadan_1f',
+    src: '/gallery/ramadan_1f.jpeg',
+    category: 'ramadan',
+    captionAr:  'رمضان 1447هـ ',
+    captionEn: 'Ramadan 1447 AH',
+    dateAr: 'رمضان 1447هـ ',
+    dateEn: 'Ramadan 1447 AH',
+  },
+  { // ramadan 1447 - رمضان 1447هـ 
+    id: 'ramadan_1e',
+    src: '/gallery/ramadan_1e.jpeg',
+    category: 'ramadan',
+    captionAr:  'رمضان 1447هـ ',
+    captionEn: 'Ramadan 1447 AH',
+    dateAr: 'رمضان 1447هـ ',
+    dateEn: 'Ramadan 1447 AH',
+  },
+  { // ramadan 1447 - رمضان 1447هـ 
+    id: 'ramadan_1d',
+    src: '/gallery/ramadan_1d.jpeg',
+    category: 'ramadan',
+    captionAr:  'رمضان 1447هـ ',
+    captionEn: 'Ramadan 1447 AH',
+    dateAr: 'رمضان 1447هـ ',
+    dateEn: 'Ramadan 1447 AH',
+  },
+  { // ramadan 1447 - رمضان 1447هـ 
+    id: 'ramadan_1c',
+    src: '/gallery/ramadan_1c.jpeg',
+    category: 'ramadan',
+    captionAr:  'رمضان 1447هـ ',
+    captionEn: 'Ramadan 1447 AH',
+    dateAr: 'رمضان 1447هـ ',
+    dateEn: 'Ramadan 1447 AH',
+  },
+  { // ramadan 1447 - رمضان 1447هـ 
+    id: 'ramadan_1b',
+    src: '/gallery/ramadan_1b.jpeg',
+    category: 'ramadan',
+    captionAr:  'رمضان 1447هـ ',
+    captionEn: 'Ramadan 1447 AH',
+    dateAr: 'رمضان 1447هـ ',
+    dateEn: 'Ramadan 1447 AH',
+  },
+  { // ramadan 1447 - رمضان 1447هـ 
+    id: 'ramadan_1a',
+    src: '/gallery/ramadan_1a.jpeg',
+    category: 'ramadan',
+    captionAr:  'رمضان 1447هـ ',
+    captionEn: 'Ramadan 1447 AH',
+    dateAr: 'رمضان 1447هـ ',
+    dateEn: 'Ramadan 1447 AH',
+  },
 
-  // Landmarks
+  //------------
+  {
+    id: 'imams-2',
+    src: '/gallery/gallery_02.jpg',
+    category: 'imams',
+    captionAr: 'معالي رئيس الشؤون الدينية يشيد بنجاح الخطة التشغيلية للحج خلال لقائه بالقيادات',
+    captionEn: 'H.E. President of Religious Affairs praises the Hajj operational plan success during leadership meeting',
+    dateAr: 'موسم الحج',
+    dateEn: 'Hajj Season',
+  },
+  {
+    id: 'imams-1',
+    src: '/gallery/gallery_04.jpg',
+    category: 'imams',
+    captionAr: 'معالي الشيخ د. عبد الرحمن السديس والشيخ د. الوليد الشمسان بالمسجد الحرام',
+    captionEn: 'H.E. Sheikh Dr. Abdul Rahman Al-Sudais & Sheikh Dr. Al-Waleed Al-Shamsan at Masjid al-Haram',
+    dateAr: 'رئاسة الشؤون الدينية',
+    dateEn: 'Presidency of Religious Affairs',
+  },
+  {
+    id: 'imams-3',
+    src: '/gallery/gallery_03.jpg',
+    category: 'imams',
+    captionAr: 'جانب من اللقاء القيادي لرئاسة الشؤون الدينية بالمسجد الحرام',
+    captionEn: 'Leadership gathering at the Presidency of Religious Affairs',
+    dateAr: 'رئاسة الشؤون الدينية',
+    dateEn: 'Presidency of Religious Affairs',
+  },
+  {
+    id: 'imams-4',
+    src: '/gallery/gallery_05.jpg',
+    category: 'imams',
+    captionAr: 'لقاء كبار أئمة المسجد الحرام — حفظهم الله',
+    captionEn: 'Gathering of the Imams of Masjid al-Haram',
+    dateAr: 'أئمة الحرم المكي',
+    dateEn: 'Imams of Makkah',
+  },
+  {
+    id: 'imams-5',
+    src: '/gallery/gallery_06.jpg',
+    category: 'imams',
+    captionAr: 'معالي رئيس الشؤون الدينية مع أئمة المسجد الحرام',
+    captionEn: 'H.E. President of Religious Affairs with the Imams of the Sacred Mosque',
+    dateAr: 'أخبار الأئمة',
+    dateEn: "Imams' News",
+  },
+  {
+    id: 'imams-6',
+    src: '/gallery/gallery_07.jpg',
+    category: 'imams',
+    captionAr: 'فضيلة الشيخ د. الوليد الشمسان برفقة أئمة المسجد الحرام',
+    captionEn: 'Sheikh Dr. Al-Waleed Al-Shamsan with Imams of Masjid al-Haram',
+    dateAr: 'أئمة الحرم المكي',
+    dateEn: 'Imams of Makkah',
+  },
+  {
+    id: 'imams-7',
+    src: '/gallery/gallery_08.jpg',
+    category: 'imams',
+    captionAr: 'لقطة تجمع أئمة المسجد الحرام بالرئاسة العامة للشؤون الدينية',
+    captionEn: 'Group photo of the Imams at the General Presidency of Religious Affairs',
+    dateAr: 'رئاسة الشؤون الدينية',
+    dateEn: 'Presidency of Religious Affairs',
+  },
+  {
+    id: 'imams-8',
+    src: '/gallery/gallery_09.jpg',
+    category: 'imams',
+    captionAr: 'جانب من اللقاءات الأخوية لأئمة وعلماء المسجد الحرام',
+    captionEn: 'Brotherly gathering of Imams and scholars of the Grand Mosque',
+    dateAr: 'أخبار الأئمة',
+    dateEn: "Imams' News",
+  },
+  {  // old lecture
+    id: 'lesson-1',
+    src: '/gallery/gallery_01.jpg',
+    category: 'lessons',
+    captionAr: 'درس فضيلة الشيخ د. ياسر الدوسري في رحاب المسجد الحرام',
+    captionEn: 'Lesson by Sheikh Dr. Yasser Al-Dossary in Masjid al-Haram',
+    dateAr: 'مجالس العلم بالحرم',
+    dateEn: 'Knowledge Councils at Haram',
+  },
   {
     id: 'landmark-1',
     src: '/gallery/landmark_1.jpg',
@@ -425,6 +544,5 @@ export const galleryItems: GalleryItem[] = [
     captionEn: 'The Sacred Mosque of Makkah',
     dateAr: 'معالم الحرم',
     dateEn: 'Haram Landmark',
-  },
-  
+  }
 ];
