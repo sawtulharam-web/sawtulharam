@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#F5F0E8] text-foreground relative border-t border-primary/20 pt-16 pb-8 overflow-hidden">
-      <IslamicPattern opacity={0.04} className="text-primary" />
+      <IslamicPattern opacity={0.12} className="text-primary" />
 
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
         {/* Logo */}
