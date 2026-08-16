@@ -19,6 +19,8 @@ export interface Sheikh {
   bioAr: string;
   bioEn: string;
   image: string;
+  youtubeShorts?: string;
+  youtubeVideos?: string;
 }
 
 // ─── ORDER HERE controls the default carousel order ───────────────────────────
@@ -59,6 +61,8 @@ He began leading prayers in mosques in Riyadh and later served as a guest Imam a
 He is among the prominent Imams of Masjid al-Haram, combining Islamic scholarship, academic excellence, and beautiful Qur'anic recitation.
 `,
     image: sheikhYasser,
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pcOPcxAsLt_gQw0AfyFyBfO',
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9peFa6uBEtVaHfHuv9EYOtnm',
   },
   {
     key: 'maher',
@@ -69,7 +73,7 @@ He is among the prominent Imams of Masjid al-Haram, combining Islamic scholarshi
     bioAr: `
 فضيلة الشيخ الدكتور ماهر بن حمد بن معيقل المعيقلي البلوي، إمام وخطيب المسجد الحرام.
 
-حفظ الشيخ القرآن الكريم، ودرس بكلية المعلمين في المدينة المنورة، وتخرج منها معلماً لمادة الرياضيات، ثم انتقل للعمل في مكة المكرمة معلماً، وبعد ذلك عمل مرشداً طلابياً في مدرسة الأمير عبد المجيد بمكة المكرمة.
+حفظ الشيخ القرآن الكريم، ودرس بكلية المعلمين في المدينة المنورة، وتخرج منها معلماً لمادة الرياضيات، ثم انتقل للعمل في مكة المكرمة معلماً، وبعد ذل ك عمل مرشداً طلابياً في مدرسة الأمير عبد المجيد بمكة المكرمة.
 
 حصل الشيخ المعيقلي على درجة الماجستير في الفقه من كلية الشريعة بجامعة أم القرى عام 1425هـ، ثم نال درجة الدكتوراه في التفسير من الجامعة نفسها عام 1432هـ، كما حصل على درجة الدكتوراه في الفقه بتقدير ممتاز مع مرتبة الشرف الأولى.
 
@@ -97,8 +101,10 @@ In 1428 AH, he began leading Taraweeh and Tahajjud prayers at Masjid al-Haram an
 Sheikh Maher Al-Muaiqly is among the most renowned Qur'an reciters in the Islamic world, known for his beautiful voice and deeply moving recitation.
 `,
     image: sheikhMaher,
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pfctpwPJcMdx1Zfv2vEzroP',
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pe9ARRHe1BBcAHZt_Ka7f9F',
   },
-  {
+  { 
     key: 'sudais',
     nameAr: 'معالي الشيخ الأستاذ الدكتور عبدالرحمن بن عبدالعزيز السديس',
     nameEn: 'His Eminence Sheikh Professor Dr. Sheikh Abdulrahman Al-Sudais',
@@ -142,6 +148,8 @@ He has taught at Masjid al-Haram since 1417 AH, teaching various Islamic science
 He is among the most prominent Imams of Masjid al-Haram, combining scholarship, leadership, and devotion to the Qur'an.
 `,
     image: sheikhSudais,
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pfuRHn5fkhWPhXcbStjdt-f',
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pcM4NX3-Swiu8FBNkAxtpWc',
   },
   {
     key: 'abdullah',
@@ -180,6 +188,8 @@ He was assigned to lead Taraweeh prayers at Masjid al-Haram during Ramadan in 14
 He received Qur'anic recitation certifications from several renowned scholars, including Sheikh Al-Zayyat, Sheikh Ibrahim Al-Akhdar, Sheikh Ali Al-Hudhaifi, and Sheikh Muhammad Ayyub.
 `,
     image: sheikhAbdullah,
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9peA2TStaHODXWdjQvLqnNd4',
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pefs9YfJWwf26NWhSMAh9za',
   },
   {
     key: 'baleelah',
@@ -216,6 +226,8 @@ He served as Imam and preacher in several mosques in Makkah before being assigne
 In 1441 AH, he was appointed as a preacher of Masjid al-Haram, and in 1442 AH he was selected as a member of the Council of Senior Scholars.
 `,
     image: sheikhBaleelah,
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pd6xViQYt7WWdNFAhl1E086',
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pf-WkbmP_O3c2TTE6UsI04r',
   },
   {
     key: 'badr',
@@ -256,6 +268,8 @@ Sheikh Badr began his journey in the mosques as a muezzin and Imam at Sheikh Sal
 He has received an authenticated Qur'anic recitation chain in the narration of Imam Asim through Shu'bah and Hafs and completed a full Qur'an recitation recording for Saudi Arabia's Qur'an Radio in 1441 AH.
 `,
     image: sheikhBadr,
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pc8fuwN_WCKR2zQAX0zBRh2',
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pczaNd-xShtdB1kWuMOqT2X',
   },
   {
     key: 'waleed',
@@ -298,6 +312,8 @@ He was assigned as an Imam of Masjid al-Haram in 1445 AH and became an official 
 Sheikh Al-Waleed Al-Shamsan combines academic scholarship with deep dedication to the Qur'an and its recitations.
 `,
     image: sheikhWaleed,
+    youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pdkj-YLTbPOe2tTzmcOF-U5',
+    youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pe0wYNDJ5LIAZUPTrm28fA8',
   },
   {
     key: 'usama',
@@ -313,6 +329,8 @@ Sheikh Al-Waleed Al-Shamsan combines academic scholarship with deep dedication t
 Sheikh Dr. Usama bin Abdullah Khayyat is an Imam and Preacher of Masjid al-Haram.
 `,
     image: sheikhUsama,
+    youtubeShorts: '',
+    youtubeVideos: '',
   },
 ];
 
