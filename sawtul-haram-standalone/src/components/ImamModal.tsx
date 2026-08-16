@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Clapperboard, Film } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import type { Sheikh } from '../data/sheikhs';
 
@@ -47,6 +47,30 @@ export default function ImamModal({ sheikh, onClose }: Props) {
             >
               <X className="w-4 h-4" />
             </button>
+
+            {/* YouTube Links */}
+            <div className="absolute top-4 left-4 z-10 flex gap-2">
+              <a
+                href={sheikh.youtubeVideos || '#'}
+                target={sheikh.youtubeVideos ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                onClick={(e) => { e.stopPropagation(); if (!sheikh.youtubeVideos) e.preventDefault(); }}
+                title={t('قائمة الفيديوهات', 'Videos Playlist')}
+                className="w-9 h-9 rounded-full bg-black/5 hover:bg-primary/20 border border-primary/10 flex items-center justify-center text-foreground/60 hover:text-primary hover:scale-110 transition-all shadow-sm"
+              >
+                <Clapperboard className="w-4 h-4" />
+              </a>
+              <a
+                href={sheikh.youtubeShorts || '#'}
+                target={sheikh.youtubeShorts ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                onClick={(e) => { e.stopPropagation(); if (!sheikh.youtubeShorts) e.preventDefault(); }}
+                title={t('قائمة المقاطع القصيرة', 'Shorts Playlist')}
+                className="w-9 h-9 rounded-full bg-black/5 hover:bg-primary/20 border border-primary/10 flex items-center justify-center text-foreground/60 hover:text-primary hover:scale-110 transition-all shadow-sm"
+              >
+                <Film className="w-4 h-4" />
+              </a>
+            </div>
 
             <div className="p-6 md:p-7 flex flex-col items-center gap-4 text-center">
               {/* Portrait */}
