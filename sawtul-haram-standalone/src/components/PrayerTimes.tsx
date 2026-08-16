@@ -144,7 +144,7 @@ export default function PrayerTimes() {
   return (
     <section id="prayer-times" className="py-24 bg-background relative overflow-hidden">
       {/* Floating Islamic Arabesque Geometry Watermark */}
-      <IslamicPattern opacity={0.05} animate={true} />
+      <IslamicPattern opacity={0.13} animate={true} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Title */}
