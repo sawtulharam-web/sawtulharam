@@ -10,6 +10,7 @@ import DailyAyah from './components/DailyAyah';
 import RemindersSection from './components/RemindersSection';
 import PhotoGallery from './components/PhotoGallery';
 import Footer from './components/Footer';
+import NewsWidget from './components/NewsWidget';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function MainContent() {
       <RemindersSection />
       <PhotoGallery />
       <Footer />
+      <NewsWidget />
     </main>
   );
 }
