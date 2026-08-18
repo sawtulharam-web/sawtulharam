@@ -21,10 +21,10 @@ export const weeklySchedule: WeeklySchedule = {
   periodAr: 'من يوم الأحد ٣ ربيع الأول إلى يوم الاثنين ٤ ربيع الأول ١٤٤٨هـ',
   periodEn: 'Sunday 26 Rabi al Awwal – Monday 2 Rabi al Awwal 1448H',
   prayers: [
-    { prayerAr: 'الفجر',   prayerEn: 'Fajr',    imamKey: 'waleed', backupKey: 'badr'   },
-    { prayerAr: 'الظهر',   prayerEn: 'Dhuhr',   imamKey: 'yasser',    backupKey: 'abdullah' },
+    { prayerAr: 'الفجر',   prayerEn: 'Fajr',    imamKey: 'waleed', backupKey: 'yasser'   },
+    { prayerAr: 'الظهر',   prayerEn: 'Dhuhr',   imamKey: 'badr',    backupKey: 'abdullah' },
     { prayerAr: 'العصر',   prayerEn: 'Asr',     imamKey: 'abdullah', backupKey: 'waleed'   },
-    { prayerAr: 'المغرب',  prayerEn: 'Maghrib', imamKey: 'badr',   backupKey: 'waleed' },
+    { prayerAr: 'المغرب',  prayerEn: 'Maghrib', imamKey: 'sudais',   backupKey: 'yasser' },
     { prayerAr: 'العشاء',  prayerEn: 'Isha',    imamKey: 'yasser',   backupKey: 'badr' },
   ],
 };
