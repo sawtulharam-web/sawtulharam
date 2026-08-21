@@ -18,8 +18,8 @@ export interface WeeklySchedule {
 
 // ─── EDIT THIS EVERY WEEK ─────────────────────────────────────────────────────
 export const weeklySchedule: WeeklySchedule = {
-  periodAr: 'من يوم الأحد ٣ ربيع الأول إلى يوم الاثنين ٤ ربيع الأول ١٤٤٨هـ',
-  periodEn: 'Sunday 26 Rabi al Awwal – Monday 2 Rabi al Awwal 1448H',
+  periodAr: 'من يوم الثلاۃ 5 ربيع الأول إلى يوم السبت 9 ربيع الأول 1448هـ',
+  periodEn: 'Tuesday 5 Rabi al Awwal – Sunday 9 Rabi al Awwal 1448H',
   prayers: [
     { prayerAr: 'الفجر',   prayerEn: 'Fajr',    imamKey: 'waleed', backupKey: 'yasser'   },
     { prayerAr: 'الظهر',   prayerEn: 'Dhuhr',   imamKey: 'badr',    backupKey: 'abdullah' },
