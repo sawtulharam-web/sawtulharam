@@ -18,14 +18,14 @@ export interface WeeklySchedule {
 
 // ─── EDIT THIS EVERY WEEK ─────────────────────────────────────────────────────
 export const weeklySchedule: WeeklySchedule = {
-  periodAr: 'من يوم الثلاۃ 5 ربيع الأول إلى يوم السبت 9 ربيع الأول 1448هـ',
-  periodEn: 'Tuesday 5 Rabi al Awwal – Sunday 9 Rabi al Awwal 1448H',
+  periodAr: 'من يوم الثلاۃ 10 ربيع الأول إلى يوم السبت 16 ربيع الأول 1448هـ',
+  periodEn: 'Tuesday 10 Rabi al Awwal – Sunday 16 Rabi al Awwal 1448H',
   prayers: [
-    { prayerAr: 'الفجر',   prayerEn: 'Fajr',    imamKey: 'waleed', backupKey: 'yasser'   },
-    { prayerAr: 'الظهر',   prayerEn: 'Dhuhr',   imamKey: 'badr',    backupKey: 'abdullah' },
-    { prayerAr: 'العصر',   prayerEn: 'Asr',     imamKey: 'abdullah', backupKey: 'waleed'   },
-    { prayerAr: 'المغرب',  prayerEn: 'Maghrib', imamKey: 'sudais',   backupKey: 'yasser' },
-    { prayerAr: 'العشاء',  prayerEn: 'Isha',    imamKey: 'yasser',   backupKey: 'badr' },
+    { prayerAr: 'الفجر',   prayerEn: 'Fajr',    imamKey: 'baleelah', backupKey: 'waleed'   },
+    { prayerAr: 'الظهر',   prayerEn: 'Dhuhr',   imamKey: 'usama',    backupKey: 'waleed' },
+    { prayerAr: 'العصر',   prayerEn: 'Asr',     imamKey: 'maher', backupKey: 'baleelah'   },
+    { prayerAr: 'المغرب',  prayerEn: 'Maghrib', imamKey: 'maher',   backupKey: 'baleelah' },
+    { prayerAr: 'العشاء',  prayerEn: 'Isha',    imamKey: 'waleed',   backupKey: 'maher' },
   ],
 };
 
