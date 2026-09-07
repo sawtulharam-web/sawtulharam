@@ -8,28 +8,37 @@ import IslamicPattern from './IslamicPattern';
 export default function NewsWidget() {
   const { t, lang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedId, setExpandedId] = useState<string | null>(NEWS_ITEMS[0]?.id || null);
+  const [expandedId, setExpandedId] = useState<string | null>(
+    NEWS_ITEMS[0]?.id || null
+  );
   const widgetRef = useRef<HTMLDivElement>(null);
 
   // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
+      if (
+        widgetRef.current &&
+        !widgetRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 
-  if (NEWS_ITEMS.length === 0) return null;
-
   return (
-    <div ref={widgetRef} className="fixed bottom-6 left-6 z-[100] flex flex-col items-start" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <div
+      ref={widgetRef}
+      className="fixed bottom-6 left-6 z-[100] flex flex-col items-start"
+      dir={lang === 'ar' ? 'rtl' : 'ltr'}
+    >
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -40,16 +49,24 @@ export default function NewsWidget() {
             className="bg-[#F8F4EC]/95 backdrop-blur-md border border-primary/20 rounded-2xl shadow-2xl mb-4 w-[320px] sm:w-[360px] overflow-hidden relative origin-bottom-left"
           >
             <IslamicPattern opacity={0.08} className="text-primary z-0" />
-            
+
             <div className="relative z-10">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-primary/10 bg-primary/5">
                 <div className="flex items-center gap-2 text-primary">
                   <Megaphone className="w-5 h-5" />
-                  <h3 className={`font-semibold ${lang === 'ar' ? 'font-arabic-secondary text-lg' : 'font-serif'}`}>
+
+                  <h3
+                    className={`font-semibold ${
+                      lang === 'ar'
+                        ? 'font-arabic-secondary text-lg'
+                        : 'font-serif'
+                    }`}
+                  >
                     {t('أحدث الأخبار', 'Latest Updates')}
                   </h3>
                 </div>
+
                 <button
                   onClick={() => setIsOpen(false)}
                   className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 text-foreground/60 hover:text-primary transition-colors"
@@ -61,54 +78,105 @@ export default function NewsWidget() {
 
               {/* News List */}
               <div className="max-h-[60vh] overflow-y-auto custom-scrollbar p-2">
-                {NEWS_ITEMS.map((news) => {
-                  const isExpanded = expandedId === news.id;
-                  
-                  return (
-                    <div key={news.id} className="mb-2 last:mb-0">
-                      <button
-                        onClick={() => setExpandedId(isExpanded ? null : news.id)}
-                        className={`w-full text-start p-3 rounded-xl transition-all duration-300 flex flex-col gap-1 ${
-                          isExpanded ? 'bg-primary/10 border-primary/20' : 'hover:bg-black/5 border-transparent'
-                        } border`}
-                      >
-                        <div className="flex items-start justify-between w-full gap-3">
-                          <h4 className={`font-medium leading-snug ${lang === 'ar' ? 'font-arabic-secondary text-base' : 'font-sans text-sm'} ${isExpanded ? 'text-primary' : 'text-foreground'}`}>
-                            {lang === 'ar' ? news.titleAr : news.titleEn}
-                          </h4>
-                          <ChevronDown
-                            className={`w-4 h-4 text-primary/60 shrink-0 transition-transform duration-300 mt-1 ${
-                              isExpanded ? 'rotate-180' : ''
-                            }`}
-                          />
-                        </div>
-                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-sans">
-                          {new Date(news.date).toLocaleDateString(lang === 'ar' ? 'ar' : 'en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </span>
-                      </button>
+                {NEWS_ITEMS.length === 0 ? (
+                  <div className="py-8 px-5 text-center">
+                    <Megaphone className="w-7 h-7 text-primary/50 mx-auto mb-3" />
 
-                      <AnimatePresence>
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="overflow-hidden"
-                          >
-                            <p className={`p-3 pt-1 text-muted-foreground leading-relaxed ${lang === 'ar' ? 'font-arabic-secondary text-sm' : 'font-sans text-xs'}`}>
-                              {lang === 'ar' ? news.contentAr : news.contentEn}
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                })}
+                    <p
+                      className={`text-muted-foreground ${
+                        lang === 'ar'
+                          ? 'font-arabic-secondary text-base'
+                          : 'font-sans text-sm'
+                      }`}
+                    >
+                      {t(
+                        'لا توجد مستجدات أو إعلانات جديدة في الوقت الحالي',
+                        'There are currently no new announcements or updates.'
+                      )}
+                    </p>
+                  </div>
+                ) : (
+                  NEWS_ITEMS.map((news) => {
+                    const isExpanded = expandedId === news.id;
+
+                    return (
+                      <div key={news.id} className="mb-2 last:mb-0">
+                        <button
+                          onClick={() =>
+                            setExpandedId(isExpanded ? null : news.id)
+                          }
+                          className={`w-full text-start p-3 rounded-xl transition-all duration-300 flex flex-col gap-1 ${
+                            isExpanded
+                              ? 'bg-primary/10 border-primary/20'
+                              : 'hover:bg-black/5 border-transparent'
+                          } border`}
+                        >
+                          <div className="flex items-start justify-between w-full gap-3">
+                            <h4
+                              className={`font-medium leading-snug ${
+                                lang === 'ar'
+                                  ? 'font-arabic-secondary text-base'
+                                  : 'font-sans text-sm'
+                              } ${
+                                isExpanded
+                                  ? 'text-primary'
+                                  : 'text-foreground'
+                              }`}
+                            >
+                              {lang === 'ar'
+                                ? news.titleAr
+                                : news.titleEn}
+                            </h4>
+
+                            <ChevronDown
+                              className={`w-4 h-4 text-primary/60 shrink-0 transition-transform duration-300 mt-1 ${
+                                isExpanded ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </div>
+
+                          <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-sans">
+                            {new Date(news.date).toLocaleDateString(
+                              lang === 'ar' ? 'ar' : 'en-US',
+                              {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                              }
+                            )}
+                          </span>
+                        </button>
+
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{
+                                duration: 0.3,
+                                ease: 'easeInOut',
+                              }}
+                              className="overflow-hidden"
+                            >
+                              <p
+                                className={`p-3 pt-1 text-muted-foreground leading-relaxed ${
+                                  lang === 'ar'
+                                    ? 'font-arabic-secondary text-sm'
+                                    : 'font-sans text-xs'
+                                }`}
+                              >
+                                {lang === 'ar'
+                                  ? news.contentAr
+                                  : news.contentEn}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </div>
           </motion.div>
@@ -122,7 +190,7 @@ export default function NewsWidget() {
         aria-label="Toggle News"
       >
         <Bell className="w-6 h-6 animate-pulse-slow group-hover:animate-none" />
-        
+
         {/* Indicator dot */}
         {NEWS_ITEMS.length > 0 && !isOpen && (
           <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-card rounded-full" />
