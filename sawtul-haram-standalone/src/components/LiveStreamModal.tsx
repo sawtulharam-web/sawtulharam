@@ -61,7 +61,7 @@ export default function LiveStreamModal({ isOpen, onClose, isPrayerTimeNow }: Li
             <div className="relative w-full pt-[56.25%] bg-black">
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/wawzF8i5yAo?autoplay=1&rel=0"
+                src="https://www.youtube-nocookie.com/embed/PLkCnLrKN8Q?autoplay=1&rel=0"
                 title="Makkah Live Stream"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -75,7 +75,7 @@ export default function LiveStreamModal({ isOpen, onClose, isPrayerTimeNow }: Li
                 <span>{t('بث مستمر على مدار 24 ساعة للقرآن الكريم والصلوات', 'Continuous 24/7 broadcast of Holy Quran recitations and live prayers')}</span>
               </div>
               <a
-                href="https://www.youtube.com/watch?v=wawzF8i5yAo"
+                href="https://www.youtube.com/watch?v=PLkCnLrKN8Q"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-primary hover:underline font-semibold"
