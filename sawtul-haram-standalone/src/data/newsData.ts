@@ -7,7 +7,11 @@ export interface NewsItem {
   date: string;
 }
 
-export const NEWS_ITEMS: NewsItem[] = [
+// when has no news:
+export const NEWS_ITEMS: NewsItem[] = [];
+
+// when has news:
+/* export const NEWS_ITEMS: NewsItem[] = [
   {
     id: 'news-1',
     titleAr: 'محاضرة لمعالي الشيخ د. عبدالرحمن السديس بعنوان «الحقيقة الشرعية لمحبة النبي ﷺ»',
@@ -25,3 +29,5 @@ export const NEWS_ITEMS: NewsItem[] = [
     date: '2026-08-17',
   },
 ];
+
+*/
