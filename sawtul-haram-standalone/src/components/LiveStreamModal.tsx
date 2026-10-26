@@ -90,3 +90,4 @@ export default function LiveStreamModal({ isOpen, onClose, isPrayerTimeNow }: Li
     </AnimatePresence>
   );
 }
+
