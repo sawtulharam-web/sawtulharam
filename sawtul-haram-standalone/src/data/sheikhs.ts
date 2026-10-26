@@ -444,3 +444,4 @@ On 24 Dhu al-Qi'dah 1422 AH, a royal decree appointed him President of the Shura
 export const SHEIKH_MAP: Record<string, Sheikh> = Object.fromEntries(
   SHEIKHS.map((s) => [s.key, s])
 );
+
