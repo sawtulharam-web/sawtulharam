@@ -8,7 +8,9 @@ import sheikhAbdullah from '@assets/الشيخ_عبد_الله_بن_عواد_ا�
 import sheikhBaleelah from '@assets/الشيخ_بندر_بن_عبد_العزيز_بليلة_1783531655012.png';
 import sheikhBadr     from '@assets/الشيخ_بدر_بن_محمد_التركي_1783531655008.png';
 import sheikhWaleed   from '@assets/الشيخ_الوليد_بن_خالد_الشمسان_1783531655011.png';
-import sheikhUsama   from '@assets/الشیخ_أسامة_بن_عبداللہ_خياط.png';
+import sheikhUsama    from '@assets/الشیخ_أسامة_بن_عبداللہ_خياط.png';
+import sheikhFaisal   from '@assets/الشيخ_فيصل_غزاوي.png'
+import sheikhSaleh    from '@assets/معالي_الشيخ_صالح_بن_حميد.png'
 
 export interface Sheikh {
   key: string;
@@ -315,23 +317,127 @@ Sheikh Al-Waleed Al-Shamsan combines academic scholarship with deep dedication t
     youtubeShorts: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pdkj-YLTbPOe2tTzmcOF-U5',
     youtubeVideos: 'https://www.youtube.com/playlist?list=PLGYh5Ysut9pe0wYNDJ5LIAZUPTrm28fA8',
   },
+
+ {
+  key: 'usama',
+  nameAr: 'فضيلة الشيخ الدكتور أسامة بن عبدالله خياط',
+  nameEn: 'His Eminence Sheikh Dr. Usama bin Abdullah Khayyat',
+  titleAr: 'إمام وخطيب المسجد الحرام',
+  titleEn: 'Imam & Preacher of Masjid al-Haram',
+
+  bioAr: `
+  فضيلة الشيخ الدكتور أسامة بن عبدالله خياط، إمام وخطيب المسجد الحرام.
+
+  هو أسامة بن عبد الله بن عبد الغني بن محمد بن عبد الغني بن إبراهيم خياط، وُلد في مكة المكرمة، ونشأ بها، وتلقى فيها علومه الأولية والابتدائية والمتوسطة والثانوية والجامعية. ونشأ في كنف والده، فضيلة العلامة الشيخ عبد الله بن عبد الغني خياط، إمام وخطيب المسجد الحرام وعضو هيئة كبار العلماء، وحفظ القرآن الكريم على يديه.
+
+  حصل الشيخ أسامة على درجة البكالوريوس في الشريعة الإسلامية من كلية الشريعة والدراسات الإسلامية بجامعة أم القرى في مكة المكرمة عام 1397هـ، بتقدير ممتاز مع مرتبة الشرف الأولى. ثم حصل على درجة الماجستير من الكلية نفسها عام 1402هـ، ونال منها درجة الدكتوراه عام 1408هـ.
+
+  عُيّن معيدًا ثم محاضرًا في قسم الشريعة الإسلامية بكلية الشريعة والدراسات الإسلامية بجامعة أم القرى عام 1403هـ. ثم عُيّن أستاذًا مساعدًا في قسم الكتاب والسنة بكلية الدعوة وأصول الدين بالجامعة عام 1409هـ، وانتُخب لاحقًا رئيسًا للقسم لثلاث فترات متتالية.
+
+  عُيّن إمامًا وخطيبًا لأحد المساجد في مكة المكرمة، ثم مدرسًا في المسجد الحرام، قبل أن يُعيّن إمامًا وخطيبًا فيه عام 1418هـ.
+
+  اختير عضوًا في مجلس الشورى في دورته الأولى عام 1414هـ، كما عُيّن عضوًا في المجلس التأسيسي لرابطة العالم الإسلامي بمكة المكرمة عام 1418هـ، وعمل أمينًا عامًا مساعدًا لهيئة الإعجاز العلمي في القرآن والسنة التابعة لرابطة العالم الإسلامي.
+
+  ومن أبرز العلماء الذين تتلمذ على أيديهم والده، الشيخ عبد الله بن عبد الغني خياط، والشيخ عبد العزيز بن عبد الله بن باز، والأستاذ الدكتور عبد الفتاح بركة.
+  `,
+
+    bioEn: `
+    Sheikh Dr. Usama bin Abdullah Khayyat is an Imam and Preacher of Masjid al-Haram.
+
+    His full name is Usama bin Abdullah bin Abdul Ghani bin Muhammad bin Abdul Ghani bin Ibrahim Khayyat. He was born and raised in Makkah, where he received his early, primary, intermediate, secondary, and university education. He grew up under the care of his father, the distinguished scholar Sheikh Abdullah bin Abdul Ghani Khayyat, an Imam and Preacher of Masjid al-Haram and a member of the Council of Senior Scholars. He also memorised the Holy Qur'an under his father's guidance.
+
+    In 1397 AH, Sheikh Usama earned a bachelor's degree in Islamic Sharia from the College of Sharia and Islamic Studies at Umm Al-Qura University in Makkah, graduating with an excellent grade and first-class honours. He subsequently obtained his master's degree from the same college in 1402 AH and his doctorate in 1408 AH.
+
+    In 1403 AH, he was appointed as a teaching assistant and subsequently a lecturer in the Department of Islamic Sharia at the College of Sharia and Islamic Studies at Umm Al-Qura University. In 1409 AH, he was appointed Assistant Professor in the Department of the Qur'an and Sunnah at the university's College of Da'wah and Fundamentals of Religion. He was later elected Head of the department for three consecutive terms.
+
+    He was appointed Imam and Preacher of a mosque in Makkah and subsequently served as a teacher at Masjid al-Haram before being appointed an Imam and Preacher there in 1418 AH.
+
+    In 1414 AH, he was selected as a member of the Shura Council during its first term. In 1418 AH, he was also appointed a member of the Founding Council of the Muslim World League in Makkah. He additionally served as Assistant Secretary-General of the Commission on Scientific Signs in the Qur'an and Sunnah affiliated with the Muslim World League.
+
+    Among his most prominent teachers were his father, Sheikh Abdullah bin Abdul Ghani Khayyat; Sheikh Abdul Aziz bin Abdullah bin Baz; and Professor Dr. Abdul Fattah Baraka.
+    `,
+
+      image: sheikhUsama,
+      youtubeShorts: '',
+      youtubeVideos: '',
+    },
+
   {
-    key: 'usama',
-    nameAr: 'فضيلة الشيخ الدكتور أسامة بن عبدالله خياط',
-    nameEn: 'His Eminence Sheikh Dr. Usama bin Abdullah Khayyat',
+    key: 'faisal',
+    nameAr: 'فضيلة الشيخ الدكتور فيصل غزاوي',
+    nameEn: 'His Eminence Sheikh Dr. Faisal Ghazawwi',
     titleAr: 'إمام وخطيب المسجد الحرام',
     titleEn: 'Imam & Preacher of Masjid al-Haram',
-    bioAr: `
-فضيلة الشيخ الدكتور أسامة بن عبدالله خياط، إمام وخطيب المسجد الحرام.
 
-`,
+    bioAr: `
+  فضيلة الشيخ الدكتور فيصل غزاوي، إمام وخطيب المسجد الحرام.
+
+  هو فيصل جميل حسن غزاوي، أحد أئمة المسجد الحرام. وُلد في السابع والعشرين من ذي الحجة عام 1385هـ.
+
+  حصل على درجة البكالوريوس في القراءات من جامعة أم القرى عام 1409هـ، ثم نال درجة الماجستير في القراءات من الجامعة نفسها، وأكمل دراساته العليا بحصوله على درجة الدكتوراه عام 1423هـ.
+
+  يشغل الدكتور فيصل غزاوي منصب عميد كلية الدعوة وأصول الدين بجامعة أم القرى في مكة المكرمة. وقد عُيّن إمامًا للمسجد الحرام عام 1428هـ.
+  `,
+
     bioEn: `
-Sheikh Dr. Usama bin Abdullah Khayyat is an Imam and Preacher of Masjid al-Haram.
-`,
-    image: sheikhUsama,
+  Sheikh Dr. Faisal Ghazawwi is an Imam and Preacher of Masjid al-Haram.
+
+  His full name is Faisal Jameel Hasan Ghazawwi. He is one of the imams of Masjid al-Haram and was born on 27 Dhu al-Hijjah 1385 AH.
+
+  He earned his bachelor's degree in Qur'anic Recitations (Qira'at) from Umm Al-Qura University in 1409 AH. He subsequently obtained a master's degree in the same specialisation from the same university, followed by a doctorate in 1423 AH.
+
+  Dr. Faisal Ghazawwi serves as Dean of the College of Da'wah and Fundamentals of Religion at Umm Al-Qura University in Makkah. He was appointed an Imam of Masjid al-Haram in 1428 AH.
+  `,
+
+    image: sheikhFaisal,
     youtubeShorts: '',
     youtubeVideos: '',
   },
+
+  {
+  key: 'saleh',
+  nameAr: 'معالي الفضيلة الشيخ الدكتور صالح بن حميد',
+  nameEn: 'His Excellency His Eminence Sheikh Dr. Saleh bin Hamid',
+  titleAr: 'إمام وخطيب المسجد الحرام',
+  titleEn: 'Imam & Preacher of Masjid al-Haram',
+
+  bioAr: `
+معالي الفضيلة الشيخ الدكتور صالح بن حميد، إمام وخطيب المسجد الحرام.
+
+هو صالح بن عبد الله بن محمد بن حميد، من مواليد مدينة بريدة سنة 1369هـ.
+
+حصل على الثانوية العامة في مكة المكرمة، ثم نال درجة البكالوريوس من كلية الشريعة والدراسات الإسلامية عام 1392هـ، بتقدير ممتاز مع مرتبة الشرف الأولى. ثم حصل على درجة الماجستير من جامعة أم القرى عام 1396هـ، ودرجة الدكتوراه من الجامعة نفسها عام 1402هـ، بتقدير ممتاز مع مرتبة الشرف الأولى.
+
+عمل معيدًا ومحاضرًا وأستاذًا مساعدًا بكلية الشريعة في جامعة أم القرى، حتى أصبح رئيسًا لقسم الاقتصاد الإسلامي. ثم تولى منصب مدير مركز الدراسات العليا الإسلامية بالجامعة، ووكيل كلية الشريعة للدراسات العليا، ثم عميدًا لكلية الشريعة.
+
+أمَّ الشيخ ابن حميد المصلين في المسجد الحرام عام 1403هـ، وعُيّن رسميًا إمامًا فيه عام 1404هـ، ويُعد أول من يحمل درجة الدكتوراه يُعيّن إمامًا للمسجد الحرام.
+
+وتولى لاحقًا منصب نائب الرئيس العام لشؤون المسجد الحرام والمسجد النبوي، ثم أصبح عضوًا في مجلس الشورى من عام 1414هـ إلى عام 1421هـ. وفي عام 1421هـ، عُيّن رئيسًا عامًا لشؤون المسجد الحرام والمسجد النبوي.
+
+وفي 24 ذي القعدة 1422هـ، صدر أمر ملكي بتعيينه رئيسًا لمجلس الشورى. وفي 19 صفر 1430هـ، عُيّن رئيسًا للمجلس الأعلى للقضاء. وفي 24 ربيع الآخر 1433هـ، أُعفي من رئاسة المجلس الأعلى للقضاء بناءً على طلبه، وعُيّن مستشارًا بالديوان الملكي بمرتبة وزير.
+`,
+
+  bioEn: `
+Sheikh Dr. Saleh bin Hamid is an Imam and Preacher of Masjid al-Haram.
+
+His full name is Saleh bin Abdullah bin Muhammad bin Humaid, and he was born in the city of Buraydah in 1369 AH.
+
+He completed his secondary education in Makkah before earning a bachelor's degree from the College of Sharia and Islamic Studies in 1392 AH, graduating with an excellent grade and first-class honours. He subsequently obtained his master's degree from Umm Al-Qura University in 1396 AH and his doctorate from the same university in 1402 AH, also graduating with an excellent grade and first-class honours.
+
+He served as a teaching assistant, lecturer, and assistant professor at the College of Sharia at Umm Al-Qura University, eventually becoming Head of the Department of Islamic Economics. He subsequently served as Director of the Centre for Islamic Higher Studies, Vice Dean for Postgraduate Studies at the College of Sharia, and Dean of the College.
+
+Sheikh Ibn Humaid first led prayers at Masjid al-Haram in 1403 AH and was officially appointed as an imam in 1404 AH. He is recognised as the first person holding a doctorate to be appointed an imam of Masjid al-Haram.
+
+He later served as Deputy President General for the Affairs of the Two Holy Mosques and subsequently as a member of the Shura Council from 1414 AH to 1421 AH. In 1421 AH, he was appointed President General for the Affairs of Masjid al-Haram and the Prophet's Mosque.
+
+On 24 Dhu al-Qi'dah 1422 AH, a royal decree appointed him President of the Shura Council. On 19 Safar 1430 AH, he was appointed President of the Supreme Judicial Council. On 24 Rabi al-Thani 1433 AH, at his own request, he was relieved of his position as President of the Supreme Judicial Council and appointed an Adviser at the Royal Court with the rank of minister.
+`,
+
+  image: sheikhSaleh,
+  youtubeShorts: '',
+  youtubeVideos: '',
+},
+
 ];
 
 /** Quick lookup by key */
